@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'OCCurses' target in the 'OCCurses' project
+//
+
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+#endif
