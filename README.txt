@@ -22,7 +22,8 @@ Using OCCurses is easy. To link your project to the OCCurses framework, follow t
 To use the framework in your code:
 1. Make sure you #import the OCCursesFramework.h header in whatever classes you wish to use the framework.
 2. In the class that initializes your code, simply start using the framework! OCCursesManager automatically starts the
-terminal in curses mode at program startup, so all you have to do is simply get to work (it will automatically exit curses mode at program termination, so the environment is managed for you).
+terminal in curses mode at program startup, so all you have to do is simply get to work (it will automatically exit
+curses mode at program termination, so the environment is managed for you).
 
 
 A note about ncurses
@@ -38,11 +39,11 @@ A basic ncurses program follows a general runtime path like so:
 3. Use the windows and setup a runloop - print to the WINDOW*'s and reorder the PANEL*'s, enable attributes, etc.
 4. Exit the program - call endwin().
 
-These steps are virtually the same with OCCurses:
-1. Program initialization - call +[OCCursesManager sharedManager].
-2. Initialize windows and panels - create OCWindow references.
-3. Use the windows and setup a runloop - print to the OCWindow references, reorder them, enable attributes, etc.
-4. Exit the program - let the shared manager autorelease.
+These steps are simplified with OCCurses:
+1. Program initialization - handled automatically, but you can enable specific settings.
+2. Initialize windows and panels - create OCWindow references and apply wanted attributes.
+3. Use the windows and setup a runloop - print to the OCWindow's, reorder them, scan from them, etc.
+4. Exit the program - handled automatically.
 
 
 That's it! Using OCCurses is very simple. If you have trouble with the code, or want to make a feature request or report
