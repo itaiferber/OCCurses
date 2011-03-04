@@ -22,8 +22,7 @@ Using OCCurses is easy. To link your project to the OCCurses framework, follow t
 To use the framework in your code:
 1. Make sure you #import the OCCursesFramework.h header in whatever classes you wish to use the framework.
 2. In the class that initializes your code, simply start using the framework! OCCursesManager automatically starts the
-terminal in curses mode at program startup, so all you have to do is simply get to work (it will also automatically exit
-curses mode at program termination, so the environment is managed for you).
+terminal in curses mode at program startup, so all you have to do is simply get to work (it will automatically exit curses mode at program termination, so the environment is managed for you).
 
 
 A note about ncurses
