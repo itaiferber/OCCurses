@@ -1,1 +1,4 @@
 build/
+xcuserdata
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
