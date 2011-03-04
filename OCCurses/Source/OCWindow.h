@@ -6,6 +6,28 @@
 //  Copyright 2011 Itai Ferber. All rights reserved.
 //
 
+/**
+ Copyright (c) 2011 Itai Ferber
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
+
 #import <Foundation/Foundation.h>
 #include <panel.h>
 #import "OCAttribute.h"
@@ -29,6 +51,7 @@
 	NSMutableArray *subwindows;
 	NSMutableSet *attributes;
 	OCBorder *border;
+	BOOL keypadEnabled;
 	
 	WINDOW *window;
 	PANEL *panel;
@@ -83,6 +106,7 @@
  */
 - (id)initWithTitle:(NSString *)aTitle frame:(NSRect)aFrame parentWindow:(OCWindow *)aWindow;
 
+
 #pragma mark Subwindow Methods
 /*!
  Adds a subwindow to the current window.
@@ -110,7 +134,14 @@
  */
 - (void)removeSubwindow:(OCWindow *)aWindow;
 
+
 #pragma mark Window Property Methods
+/*!
+ Returns the location of the cursor in the window.
+ @returns the location of the cursor
+ */
+- (NSPoint)cursorLocation;
+
 /*!
  Returns the frame of the window as a formatted rectangle
  @returns the frame of the window
@@ -130,6 +161,23 @@
  @returns whether the operation was performed successfully
  */
 - (BOOL)setFrameOrigin:(NSPoint)aPoint;
+
+
+#pragma mark Keypad Methods
+/*!
+ Returns whether a keypad is enabled for the window. Enabling a keypad for a window allows it
+ to interpret unprintable keystrokes, such as function keys, arrow keys, the escape key, and so on.
+ By default, a keypad is enabled for the window.
+ @returns whether a keypad is enabled
+ */
+- (BOOL)isKeypadEnabled;
+
+/*!
+ Enables or disables a keypad for the window.
+ @param aFlag whether to enable or disable the keypad
+ */
+- (void)setKeypadEnabled:(BOOL)aFlag;
+
 
 #pragma mark Attribute Methods
 /*!
@@ -171,6 +219,7 @@
  */
 - (void)disableAllAttributes;
 
+
 #pragma mark Border Methods
 /*!
  Returns the currently applied border (nil if no border is set).
@@ -183,6 +232,7 @@
  @param aBorder the border to set
  */
 - (void)setBorder:(OCBorder *)aBorder;
+
 
 #pragma mark Printing Methods
 /*!
@@ -221,6 +271,7 @@
  */
 - (BOOL)writeToWindowAtLocation:(NSPoint)aLocation format:(NSString *)aFormat arguments:(va_list)aList;
 
+
 #pragma mark Character Methods
 /*!
  Returns a single keystroke from the user (if keypad() is enabled, this keystroke can be an extended
@@ -250,6 +301,7 @@
  @returns whether writing succeeded
  */
 - (BOOL)writeCharacterAtLocation:(NSPoint)aLocation character:(OCCharacter)aCharacter;
+
 
 #pragma mark Scanning Methods
 /*!

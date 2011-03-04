@@ -6,6 +6,28 @@
 //  Copyright 2011 Itai Ferber. All rights reserved.
 //
 
+/**
+ Copyright (c) 2011 Itai Ferber
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
+
 #import <Foundation/Foundation.h>
 #include <curses.h>
 #import "OCWindow.h"
@@ -31,6 +53,26 @@
  @returns a new autoreleased ncurses manager
  */
 + (id)sharedManager;
+
+
+#pragma mark States
+/*!
+ Returns whether the terminal is currently in curses mode (terminals can temporarily exit curses
+ mode and reenter later using def_prog_mode() and reset_prog_mode()).
+ @returns whether the terminal is in curses mode
+ */
+- (BOOL)isInCursesMode;
+
+/*!
+ If the terminal is in curses mode, it temporarily returns to the default TTY mode.
+ */
+- (void)pauseCursesMode;
+
+/*!
+ If the terminal is in the default TTY mode, it returns to curses mode.
+ */
+- (void)resumeCursesMode;
+
 
 #pragma mark Properties
 /*!
@@ -87,21 +129,6 @@
  @param aFlag whether to enable or disable echo mode
  */
 + (void)setEchoEnabled:(BOOL)aFlag;
-
-/*!
- Returns whether a keypad (keypad()) is enabled (enabling a keypad will allow the program to receive
- and interpret non-displaying keys such as arrow keys, function keys, etc.). By default, a keypad is
- enabled.
- @returns whether keypad() is enabled
- */
-+ (BOOL)isKeypadEnabled;
-
-/*!
- Enables or disables a keypad.
- @see isKeypadEnabled for an explanation of keypad
- @param aFlag whether to enable or disable a keypad
- */
-+ (void)setKeypadEnabled:(BOOL)aFlag;
 
 /*!
  Returns whether a half delay (halfdelay()) is enabled (enabling a half delay will cause the program

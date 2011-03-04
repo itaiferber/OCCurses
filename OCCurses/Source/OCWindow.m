@@ -6,6 +6,28 @@
 //  Copyright 2011 Itai Ferber. All rights reserved.
 //
 
+/**
+ Copyright (c) 2011 Itai Ferber
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
+
 #import "OCWindow.h"
 
 #define EVALUATE_WITH_ARGUMENT_LIST(format, argumentList, statement, returnType) va_list argumentList; \
@@ -54,6 +76,9 @@ static OCWindow *mainWindow = nil;
 			attributes = [[NSMutableSet alloc] init];
 			border = nil;
 			
+			keypad(window, TRUE);
+			keypadEnabled = YES;
+			
 			panel = new_panel(window);
 			[mainWindow addSubwindow:self];
 			UPDATE_PANELS;
@@ -74,6 +99,9 @@ static OCWindow *mainWindow = nil;
 			subwindows = [[NSMutableArray alloc] init];
 			attributes = [[NSMutableSet alloc] init];
 			border = nil;
+			
+			keypad(window, TRUE);
+			keypadEnabled = YES;
 		
 			panel = new_panel(window);
 			[aWindow addSubwindow:self];
@@ -132,6 +160,12 @@ static OCWindow *mainWindow = nil;
 
 #pragma mark -
 #pragma mark Window Property Methods
+- (NSPoint)cursorLocation {
+	int yCoordinate, xCoordinate;
+	getyx(window, yCoordinate, xCoordinate);
+	return (NSPoint){xCoordinate, yCoordinate};
+}
+
 - (NSRect)frame {
 	return frame;
 }
@@ -157,6 +191,17 @@ static OCWindow *mainWindow = nil;
 	
 	UPDATE_PANELS;
 	return result == OK;
+}
+
+#pragma mark -
+#pragma mark Keypad Methods
+- (BOOL)isKeypadEnabled {
+	return keypadEnabled;
+}
+
+- (void)setKeypadEnabled:(BOOL)aFlag {
+	keypad(window, aFlag ? TRUE : FALSE);
+	keypadEnabled = aFlag;
 }
 
 #pragma mark -

@@ -6,6 +6,28 @@
 //  Copyright 2011 Itai Ferber. All rights reserved.
 //
 
+/**
+ Copyright (c) 2011 Itai Ferber
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
+
 #import "OCCursesManager.h"
 
 
@@ -28,10 +50,10 @@ static OCCursesManager *sharedManager = nil;
 			start_color();
 		}
 		
-		standardScreen = [OCWindow mainWindow];		
+		standardScreen = [OCWindow mainWindow];
+		[[self class] setRawEnabled:NO];
 		[[self class] setCharacterBreakEnabled:YES];
 		[[self class] setEchoEnabled:NO];
-		[[self class] setKeypadEnabled:YES];
 	}
 	
 	return self;
@@ -45,49 +67,59 @@ static OCCursesManager *sharedManager = nil;
 }
 
 #pragma mark -
+#pragma mark State Methods
+static BOOL inCursesMode = YES;
+- (BOOL)isInCursesMode {
+	return inCursesMode;
+}
+
+- (void)pauseCursesMode {
+	if (inCursesMode) {
+		def_prog_mode();
+		endwin();
+	}
+}
+
+- (void)resumeCursesMode {
+	if (!inCursesMode) {
+		reset_prog_mode();
+	}
+}
+
+#pragma mark -
 #pragma mark Terminal Settings
 + (BOOL)hasKey:(OCKey)aKey {
 	return has_key(aKey) == OK;
 }
 
-static BOOL isRawEnabled = NO;
+static BOOL rawEnabled = NO;
 + (BOOL)isRawEnabled {
-	return isRawEnabled;
+	return rawEnabled;
 }
 
 + (void)setRawEnabled:(BOOL)aFlag {
 	aFlag ? raw() : noraw();
-	isRawEnabled = aFlag;
+	rawEnabled = aFlag;
 }
 
-static BOOL isCharacterBreakEnabled = NO;
+static BOOL characterBreakEnabled = NO;
 + (BOOL)isCharacterBreakEnabled {
-	return isCharacterBreakEnabled;
+	return characterBreakEnabled;
 }
 
 + (void)setCharacterBreakEnabled:(BOOL)aFlag {
 	aFlag ? cbreak() : nocbreak();
-	isCharacterBreakEnabled = aFlag;
+	characterBreakEnabled = aFlag;
 }
 
-static BOOL isEchoEnabled;
+static BOOL echoEnabled = NO;
 + (BOOL)isEchoEnabled {
-	return isEchoEnabled;
+	return echoEnabled;
 }
 
 + (void)setEchoEnabled:(BOOL)aFlag {
 	aFlag ? echo() : noecho();
-	isEchoEnabled = aFlag;
-}
-
-static BOOL isKeypadEnabled;
-+ (BOOL)isKeypadEnabled {
-	return isKeypadEnabled;
-}
-
-+ (void)setKeypadEnabled:(BOOL)aFlag {
-	aFlag ? keypad(stdscr, TRUE) : keypad(stdscr, FALSE);
-	isKeypadEnabled = aFlag;
+	echoEnabled = aFlag;
 }
 
 static int halfDelay = 0;
