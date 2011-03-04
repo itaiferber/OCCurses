@@ -12,11 +12,18 @@ The ncurses project is developed and maintained by the Free Software Foundation 
 http://www.gnu.org/software/ncurses/
 
 
-Using OCCurses is easy. The basic steps are:
-1. Import the framework into your project with the appropriate steps.
-2. In whatever class you're going to use OCCurses, make sure to #import the OCCursesFramework.h header file.
-3. Instantiate an OCCursesManager using +[OCCursesManager sharedManager].
-4. Create instances of OCWindow and get to work!
+Using OCCurses is easy. To link your project to the OCCurses framework, follow these steps:
+1. Compile the OCCurses framework using whatever settings you wish.
+2. Open up your application's Xcode project, and select the application target.
+3. Hit 'Add' under the 'Link Binary With Libraries' heading, and add the compiled framework.
+4. Add a new 'Copy Files' build phase that copies files to the 'Framework' folder (make sure there is no subpath).
+5. Drag the framework to the build phase, and clean your project (for good measure).
+
+To use the framework in your code:
+1. Make sure you #import the OCCursesFramework.h header in whatever classes you wish to use the framework.
+2. In the class that initializes your code, simply start using the framework! OCCursesManager automatically starts the
+terminal in curses mode at program startup, so all you have to do is simply get to work (it will also automatically exit
+curses mode at program termination, so the environment is managed for you).
 
 
 A note about ncurses

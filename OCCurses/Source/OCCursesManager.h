@@ -35,25 +35,14 @@
 
 /*!
  @class OCCursesManager
- @discussion OCCursesManager is the top-level class used to initialize and manage ncurses. There is
- a shared manager that handles the starting and ending of ncurses, along with handing several common
- attributes commonly set at startup.
+ @discussion OCCursesManager is the top-level class used to initialize and manage ncurses.
+ Before main() is called, OCCursesManager initializes curses mode and enables default settings. 
+ After main() exits, curses mode is automatically exited, and the terminal returns to normal.
  
- At the initialization of the system, cbreak(), noecho(), keypad(), meta(), and nonl() are called as
- common default settings. Use the given methods to reapply settings as necessary.
+ At the initialization of the system, noraw(), cbreak() and noecho() are called as common default
+ settings. Use the given methods to reapply settings as necessary.
  */
-@interface OCCursesManager : NSObject {
-	OCWindow *standardScreen;
-}
-
-#pragma mark Initializers
-/*!
- Creates and returns a new shared ncurses manager. If one does not yet exist, a new manager is
- initialized, thereby starting ncurses.
- @returns a new autoreleased ncurses manager
- */
-+ (id)sharedManager;
-
+@interface OCCursesManager : NSObject {}
 
 #pragma mark States
 /*!
@@ -61,17 +50,17 @@
  mode and reenter later using def_prog_mode() and reset_prog_mode()).
  @returns whether the terminal is in curses mode
  */
-- (BOOL)isInCursesMode;
++ (BOOL)isInCursesMode;
 
 /*!
  If the terminal is in curses mode, it temporarily returns to the default TTY mode.
  */
-- (void)pauseCursesMode;
++ (void)pauseCursesMode;
 
 /*!
  If the terminal is in the default TTY mode, it returns to curses mode.
  */
-- (void)resumeCursesMode;
++ (void)resumeCursesMode;
 
 
 #pragma mark Properties

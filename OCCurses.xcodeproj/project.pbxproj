@@ -10,9 +10,9 @@
 		5C059D191320151900CF274E /* OCCursesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C059D171320151700CF274E /* OCCursesManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C059D1A1320151900CF274E /* OCCursesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C059D181320151700CF274E /* OCCursesManager.m */; };
 		5C059D2313201A7800CF274E /* OCCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C059D2213201A7700CF274E /* OCCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5C085487132183B00003DEE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C085486132183B00003DEE8 /* Foundation.framework */; };
 		5C0AD64413207DBA00BF7B1D /* OCKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C0AD64313207DBA00BF7B1D /* OCKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C0AD64A132091BC00BF7B1D /* OCCursesFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C0AD649132091BB00BF7B1D /* OCCursesFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5C4295A7131F358000704B36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4295A6131F358000704B36 /* Cocoa.framework */; };
 		5C4295B1131F358100704B36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C4295AF131F358100704B36 /* InfoPlist.strings */; };
 		5C4295BC131F35CE00704B36 /* OCBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4295BA131F35CE00704B36 /* OCBorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C4295BD131F35CE00704B36 /* OCBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295BB131F35CE00704B36 /* OCBorder.m */; };
@@ -30,13 +30,10 @@
 		5C059D171320151700CF274E /* OCCursesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCursesManager.h; sourceTree = "<group>"; };
 		5C059D181320151700CF274E /* OCCursesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCursesManager.m; sourceTree = "<group>"; };
 		5C059D2213201A7700CF274E /* OCCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCharacter.h; sourceTree = "<group>"; };
+		5C085486132183B00003DEE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5C0AD64313207DBA00BF7B1D /* OCKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCKey.h; sourceTree = "<group>"; };
 		5C0AD649132091BB00BF7B1D /* OCCursesFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCursesFramework.h; sourceTree = "<group>"; };
 		5C4295A3131F358000704B36 /* OCCurses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OCCurses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C4295A6131F358000704B36 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		5C4295A9131F358000704B36 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		5C4295AA131F358000704B36 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		5C4295AB131F358000704B36 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5C4295AE131F358100704B36 /* OCCurses-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OCCurses-Info.plist"; sourceTree = "<group>"; };
 		5C4295B0131F358100704B36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5C4295B2131F358100704B36 /* OCCurses-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCCurses-Prefix.pch"; sourceTree = "<group>"; };
@@ -57,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C4295A7131F358000704B36 /* Cocoa.framework in Frameworks */,
+				5C085487132183B00003DEE8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,20 +108,9 @@
 		5C4295A5131F358000704B36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5C4295A6131F358000704B36 /* Cocoa.framework */,
-				5C4295A8131F358000704B36 /* Other Frameworks */,
+				5C085486132183B00003DEE8 /* Foundation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5C4295A8131F358000704B36 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5C4295A9131F358000704B36 /* AppKit.framework */,
-				5C4295AA131F358000704B36 /* CoreData.framework */,
-				5C4295AB131F358000704B36 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		5C4295AC131F358000704B36 /* OCCurses */ = {
@@ -321,6 +307,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OCCurses/OCCurses-Prefix.pch";
 				INFOPLIST_FILE = "OCCurses/OCCurses-Info.plist";
+				INSTALL_PATH = "@executable_path";
 				OTHER_LDFLAGS = (
 					"-lpanel",
 					"-lncurses",
@@ -343,6 +330,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OCCurses/OCCurses-Prefix.pch";
 				INFOPLIST_FILE = "OCCurses/OCCurses-Info.plist";
+				INSTALL_PATH = "@executable_path";
 				OTHER_LDFLAGS = (
 					"-lpanel",
 					"-lncurses",

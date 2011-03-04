@@ -30,57 +30,44 @@
 
 #import "OCCursesManager.h"
 
-
 @implementation OCCursesManager
 
 #pragma mark Initialization
-static OCCursesManager *sharedManager = nil;
-+ (id)sharedManager {
-	if (!sharedManager) {
-		sharedManager = [[OCCursesManager alloc] init];
+__attribute__((constructor))
+void initialize () {
+	initscr();
+	if (has_colors()) {
+		start_color();
 	}
 	
-	return sharedManager;
-}
-
-- (id)init {
-	if ((self = [super init])) {
-		initscr();
-		if (has_colors()) {
-			start_color();
-		}
-		
-		standardScreen = [OCWindow mainWindow];
-		[[self class] setRawEnabled:NO];
-		[[self class] setCharacterBreakEnabled:YES];
-		[[self class] setEchoEnabled:NO];
-	}
-	
-	return self;
+	noraw();
+	cbreak();
+	noecho();
+	halfdelay(0);
 }
 
 #pragma mark -
 #pragma mark Deallocation
-- (void)dealloc {
+__attribute__((destructor))
+void deallocate () {
 	endwin();
-	[super dealloc];
 }
 
 #pragma mark -
 #pragma mark State Methods
 static BOOL inCursesMode = YES;
-- (BOOL)isInCursesMode {
++ (BOOL)isInCursesMode {
 	return inCursesMode;
 }
 
-- (void)pauseCursesMode {
++ (void)pauseCursesMode {
 	if (inCursesMode) {
 		def_prog_mode();
 		endwin();
 	}
 }
 
-- (void)resumeCursesMode {
++ (void)resumeCursesMode {
 	if (!inCursesMode) {
 		reset_prog_mode();
 	}
@@ -102,7 +89,7 @@ static BOOL rawEnabled = NO;
 	rawEnabled = aFlag;
 }
 
-static BOOL characterBreakEnabled = NO;
+static BOOL characterBreakEnabled = YES;
 + (BOOL)isCharacterBreakEnabled {
 	return characterBreakEnabled;
 }
