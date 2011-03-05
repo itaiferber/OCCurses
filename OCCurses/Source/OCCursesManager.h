@@ -65,6 +65,20 @@
 
 #pragma mark Properties
 /*!
+ Returns whether the current terminal has color capabilities or not. By default, color support is
+ turned off.
+ @returns whether colors can be used
+ */
++ (BOOL)hasColors;
+
+/*!
+ Starts colors on the current terminal. This will usually set the color scheme to something other
+ than the default. Unfortunately, ncurses has no support for determining the default colors set for
+ the terminal.
+ */
++ (void)startColors;
+
+/*!
  Returns whether the current terminal accepts the given key as a valid keystroke.
  @param aKey the key to check
  @returns whether the key is accepted

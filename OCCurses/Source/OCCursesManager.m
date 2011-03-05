@@ -35,11 +35,7 @@
 #pragma mark Initialization
 __attribute__((constructor))
 void initialize () {
-	initscr();
-	if (has_colors()) {
-		start_color();
-	}
-	
+	initscr();	
 	noraw();
 	cbreak();
 	noecho();
@@ -55,6 +51,16 @@ void deallocate () {
 
 #pragma mark -
 #pragma mark State Methods
++ (BOOL)hasColors {
+	return has_colors();
+}
+
++ (void)startColors {
+	if (has_colors()) {
+		start_color();
+	}
+}
+
 static BOOL inCursesMode = YES;
 + (BOOL)isInCursesMode {
 	return inCursesMode;
