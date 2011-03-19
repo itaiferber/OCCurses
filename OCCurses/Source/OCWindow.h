@@ -46,15 +46,15 @@
  and scanned from, and text attributes can be easily applied using the OCAttribute class.
  */
 @interface OCWindow : NSObject {
-	NSString *title;
-	NSRect frame;
-	NSMutableArray *subwindows;
-	NSMutableSet *attributes;
-	OCBorder *border;
-	BOOL keypadEnabled;
+	NSString *_title;
+	NSRect _frame;
+	NSMutableArray *_subwindows;
+	NSMutableSet *_attributes;
+	OCBorder *_border;
+	BOOL _keypadEnabled;
 	
-	WINDOW *window;
-	PANEL *panel;
+	WINDOW *_window;
+	PANEL *_panel;
 }
 
 #pragma mark Properties
