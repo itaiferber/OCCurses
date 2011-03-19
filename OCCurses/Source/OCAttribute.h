@@ -32,16 +32,10 @@
 #include <curses.h>
 
 /*!
- @typedef OCAttributeIdentifier
- @discussion A convenience identifier typedef used to control text attribute creation.
- */
-typedef unsigned short OCAttributeIdentifier;
-
-/*!
  @enum OCAttributeIdentifier
  @discussion A convenience enumeration used to create standard text attributes.
  */
-extern enum OCAttributeIdentifier {
+typedef enum {
 	OCAttributeNormal = A_NORMAL,
 	OCAttributeStandout = A_STANDOUT,
 	OCAttributeUnderline = A_UNDERLINE,
@@ -52,7 +46,7 @@ extern enum OCAttributeIdentifier {
 	OCAttributeAlternativeCharacterSet = A_ALTCHARSET,
 	OCAttributeInvisible = A_INVIS,
 	OCAttributeProtected = A_PROTECT
-};
+} OCAttributeIdentifier;
 
 /*!
  @class OCAttribute
@@ -61,7 +55,7 @@ extern enum OCAttributeIdentifier {
  cryptic ones left out.
  */
 @interface OCAttribute : NSObject {
-	OCAttributeIdentifier attributeIdentifier;
+	OCAttributeIdentifier _attributeIdentifier;
 }
 
 #pragma mark Properties

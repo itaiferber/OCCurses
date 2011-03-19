@@ -31,17 +31,11 @@
 #include <curses.h>
 
 /*!
- @typedef OCKey
- @discussion A convenience typedef used for clarity.
- */
-typedef unichar OCKey;
-
-/*!
  @enum OCKey
  @discussion A list of acceptable user keystrokes that ncurses accepts (given that keypad() is
  enabled) for processing.
  */
-extern enum OCKey {
+typedef enum {
 	OCKeyDown = KEY_DOWN,						/* down-arrow key */
 	OCKeyUp = KEY_UP,							/* up-arrow key */
 	OCKeyLeft = KEY_LEFT,						/* left-arrow key */
@@ -131,7 +125,7 @@ extern enum OCKey {
 	OCKeyMouse = KEY_MOUSE,						/* Mouse event has occurred */
 	OCKeyResize = KEY_RESIZE,					/* Terminal resize event */
 	OCKeyEvent = KEY_EVENT						/* We were interrupted by an event */
-};
+} OCKey;
 
 /*!
  A macro definition of a method for getting function keys mapped (valid up to OCKeyFunction(64)).

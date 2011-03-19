@@ -32,7 +32,7 @@
 
 
 @interface OCColor ()
-#pragma mark Private Methods
+#pragma mark - Private Methods
 + (id)colorWithColorIdentifier:(OCColorIdentifier)anIdentifier;
 - (id)initWithColorIdentifier:(OCColorIdentifier)anIdentifier;
 @end
@@ -40,25 +40,23 @@
 #pragma mark -
 @implementation OCColor
 
-#pragma mark Synthesis
-@synthesize colorIdentifier;
+#pragma mark - Synthesis
+@synthesize colorIdentifier = _colorIdentifier;
 
-#pragma mark -
-#pragma mark Initialization
+#pragma mark - Initialization
 + (id)colorWithColorIdentifier:(OCColorIdentifier)anIdentifier {
 	return [[[self alloc] initWithColorIdentifier:anIdentifier] autorelease];
 }
 
 - (id)initWithColorIdentifier:(OCColorIdentifier)anIdentifier {
 	if ((self = [super init])) {
-		colorIdentifier = anIdentifier;
+		_colorIdentifier = anIdentifier;
 	}
 	
 	return self;
 }
 
-#pragma mark -
-#pragma mark Color-Specific Methods
+#pragma mark - Color Specific Methods
 + (id)blackColor {
 	return [self colorWithColorIdentifier:OCColorBlack];
 }
@@ -89,6 +87,51 @@
 
 + (id)whiteColor {
 	return [self colorWithColorIdentifier:OCColorWhite];
+}
+
+#pragma mark - Is Equal
+- (BOOL)isEqual:(id)object {
+	if ([object isKindOfClass:[OCColor class]]) {
+		return ((OCColor *)object).colorIdentifier == _colorIdentifier;
+	} else {
+		return NO;
+	}
+}
+
+#pragma mark - Description
+- (NSString *)description {
+	NSString *colorDescription;
+	switch (_colorIdentifier) {
+		case OCColorBlack:
+			colorDescription = @"OCColorBlack";
+			break;
+		case OCColorRed:
+			colorDescription = @"OCColorRed";
+			break;
+		case OCColorGreen:
+			colorDescription = @"OCColorGreen";
+			break;
+		case OCColorYellow:
+			colorDescription = @"OCColorYellow";
+			break;
+		case OCColorBlue:
+			colorDescription = @"OCColorBlue";
+			break;
+		case OCColorMagenta:
+			colorDescription = @"OCColorMagenta";
+			break;
+		case OCColorCyan:
+			colorDescription = @"OCColorCyan";
+			break;
+		case OCColorWhite:
+			colorDescription = @"OCColorWhite";
+			break;
+		default:
+			colorDescription = nil;
+			break;
+	}
+	
+	return [NSString stringWithFormat:@"<OCColor: %@>", colorDescription];
 }
 
 @end

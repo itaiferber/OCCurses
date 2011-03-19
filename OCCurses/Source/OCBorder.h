@@ -38,7 +38,7 @@
  an OCBorder must be formatted in the same way.
  */
 @interface OCBorder : NSObject {
-	NSString *borderComponents;
+	NSString *_borderComponents;
 }
 
 #pragma mark Properties

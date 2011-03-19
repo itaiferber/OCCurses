@@ -33,29 +33,42 @@
 
 @implementation OCColorPair
 
-#pragma mark Synthesis
-@synthesize foregroundColor;
-@synthesize backgroundColor;
+#pragma mark - Synthesis
+@synthesize foregroundColor = _foregroundColor;
+@synthesize backgroundColor = _backgroundColor;
 
-#pragma mark -
-#pragma mark Initialization
-+ (id)colorPairWithForegroundColor:(OCColor *)aForeground background:(OCColor *)aBackground {
-	return [[[self alloc] initWithForegroundColor:aForeground background:aBackground] autorelease];
+#pragma mark - Initialization
++ (id)colorPairWithForegroundColor:(OCColor *)aForeground backgroundColor:(OCColor *)aBackground {
+	return [[[self alloc] initWithForegroundColor:aForeground backgroundColor:aBackground] autorelease];
 }
 
 static OCAttributeIdentifier currentPairIdentifier = 1;
-- (id)initWithForegroundColor:(OCColor *)aForeground background:(OCColor *)aBackground {
+- (id)initWithForegroundColor:(OCColor *)aForeground backgroundColor:(OCColor *)aBackground {
 	if ((self = [super initWithAttributeIdentifier:currentPairIdentifier])) {
 		if (aForeground && aBackground) {
-			foregroundColor = [aForeground retain];
-			backgroundColor = [aBackground retain];
-			init_pair(currentPairIdentifier++, foregroundColor.colorIdentifier, backgroundColor.colorIdentifier);
+			_foregroundColor = [aForeground retain];
+			_backgroundColor = [aBackground retain];
+			init_pair(currentPairIdentifier++, _foregroundColor.colorIdentifier, _backgroundColor.colorIdentifier);
 		} else {
 			[self release], self = nil;
 		}
 	}
 	
 	return self;
+}
+
+#pragma mark - Is Equal
+- (BOOL)isEqual:(id)object {
+	if ([object isKindOfClass:[OCColorPair class]]) {
+		return [((OCColorPair *)object).foregroundColor isEqual:_foregroundColor] && [((OCColorPair *)object).backgroundColor isEqual:_backgroundColor];
+	} else {
+		return NO;
+	}
+}
+
+#pragma mark - Description
+- (NSString *)description {
+	return [NSString stringWithFormat:@"<OCColorPair: %@, %@>", _foregroundColor, _backgroundColor];
 }
 
 @end

@@ -24,6 +24,13 @@
 		5C4295CA131F3E4800704B36 /* OCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295C8131F3E4800704B36 /* OCAttribute.m */; };
 		5C4295CD131F44FF00704B36 /* OCWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4295CB131F44FD00704B36 /* OCWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C4295CE131F44FF00704B36 /* OCWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295CC131F44FE00704B36 /* OCWindow.m */; };
+		5C72574A133410440040D3BB /* OCColorPairTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C725749133410440040D3BB /* OCColorPairTests.m */; };
+		5C8201A7132650FC00341B5C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C8201A5132650FC00341B5C /* InfoPlist.strings */; };
+		5C8201B21326511D00341B5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C085486132183B00003DEE8 /* Foundation.framework */; };
+		5C8201B31326512100341B5C /* OCCurses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4295A3131F358000704B36 /* OCCurses.framework */; };
+		5CA4068213269DBC00264DCC /* OCBorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4068113269DBC00264DCC /* OCBorderTests.m */; };
+		5CA406871326AE6000264DCC /* OCColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA406861326AE6000264DCC /* OCColorTests.m */; };
+		5CD61A4813342BA200C69FAF /* OCAttributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD61A4713342BA200C69FAF /* OCAttributeTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +54,18 @@
 		5C4295C8131F3E4800704B36 /* OCAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCAttribute.m; sourceTree = "<group>"; };
 		5C4295CB131F44FD00704B36 /* OCWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCWindow.h; sourceTree = "<group>"; };
 		5C4295CC131F44FE00704B36 /* OCWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCWindow.m; sourceTree = "<group>"; };
+		5C725748133410440040D3BB /* OCColorPairTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OCColorPairTests.h; path = Tests/OCColorPairTests.h; sourceTree = "<group>"; };
+		5C725749133410440040D3BB /* OCColorPairTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OCColorPairTests.m; path = Tests/OCColorPairTests.m; sourceTree = "<group>"; };
+		5C82019B132650FC00341B5C /* OCCursesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OCCursesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C8201A4132650FC00341B5C /* OCCursesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OCCursesTests-Info.plist"; sourceTree = "<group>"; };
+		5C8201A6132650FC00341B5C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5C8201A8132650FC00341B5C /* OCCursesTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCCursesTests-Prefix.pch"; sourceTree = "<group>"; };
+		5CA4068013269DBC00264DCC /* OCBorderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OCBorderTests.h; path = Tests/OCBorderTests.h; sourceTree = "<group>"; };
+		5CA4068113269DBC00264DCC /* OCBorderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OCBorderTests.m; path = Tests/OCBorderTests.m; sourceTree = "<group>"; };
+		5CA406851326AE6000264DCC /* OCColorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OCColorTests.h; path = Tests/OCColorTests.h; sourceTree = "<group>"; };
+		5CA406861326AE6000264DCC /* OCColorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OCColorTests.m; path = Tests/OCColorTests.m; sourceTree = "<group>"; };
+		5CD61A4613342BA200C69FAF /* OCAttributeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OCAttributeTests.h; path = Tests/OCAttributeTests.h; sourceTree = "<group>"; };
+		5CD61A4713342BA200C69FAF /* OCAttributeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OCAttributeTests.m; path = Tests/OCAttributeTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +74,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C085487132183B00003DEE8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C820197132650FC00341B5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C8201B21326511D00341B5C /* Foundation.framework in Frameworks */,
+				5C8201B31326512100341B5C /* OCCurses.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				5C4295AC131F358000704B36 /* OCCurses */,
+				5C8201A2132650FC00341B5C /* OCCursesTests */,
 				5C4295A5131F358000704B36 /* Frameworks */,
 				5C4295A4131F358000704B36 /* Products */,
 			);
@@ -100,7 +129,7 @@
 		5C4295A4131F358000704B36 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5C4295A3131F358000704B36 /* OCCurses.framework */,
+				5C82019B132650FC00341B5C /* OCCursesTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +137,7 @@
 		5C4295A5131F358000704B36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C4295A3131F358000704B36 /* OCCurses.framework */,
 				5C085486132183B00003DEE8 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -159,6 +189,40 @@
 			name = Attributes;
 			sourceTree = "<group>";
 		};
+		5C8201A2132650FC00341B5C /* OCCursesTests */ = {
+			isa = PBXGroup;
+			children = (
+				5CA4068413269DC900264DCC /* Attributes */,
+				5C8201A3132650FC00341B5C /* Supporting Files */,
+			);
+			path = OCCursesTests;
+			sourceTree = "<group>";
+		};
+		5C8201A3132650FC00341B5C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5C8201A4132650FC00341B5C /* OCCursesTests-Info.plist */,
+				5C8201A5132650FC00341B5C /* InfoPlist.strings */,
+				5C8201A8132650FC00341B5C /* OCCursesTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5CA4068413269DC900264DCC /* Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				5CD61A4613342BA200C69FAF /* OCAttributeTests.h */,
+				5CD61A4713342BA200C69FAF /* OCAttributeTests.m */,
+				5CA4068013269DBC00264DCC /* OCBorderTests.h */,
+				5CA4068113269DBC00264DCC /* OCBorderTests.m */,
+				5CA406851326AE6000264DCC /* OCColorTests.h */,
+				5CA406861326AE6000264DCC /* OCColorTests.m */,
+				5C725748133410440040D3BB /* OCColorPairTests.h */,
+				5C725749133410440040D3BB /* OCColorPairTests.m */,
+			);
+			name = Attributes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -199,6 +263,24 @@
 			productReference = 5C4295A3131F358000704B36 /* OCCurses.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		5C82019A132650FC00341B5C /* OCCursesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C8201AF132650FC00341B5C /* Build configuration list for PBXNativeTarget "OCCursesTests" */;
+			buildPhases = (
+				5C820196132650FC00341B5C /* Sources */,
+				5C820197132650FC00341B5C /* Frameworks */,
+				5C820198132650FC00341B5C /* Resources */,
+				5C820199132650FC00341B5C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OCCursesTests;
+			productName = OCCursesTests;
+			productReference = 5C82019B132650FC00341B5C /* OCCursesTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,6 +302,7 @@
 			projectRoot = "";
 			targets = (
 				5C4295A2131F358000704B36 /* OCCurses */,
+				5C82019A132650FC00341B5C /* OCCursesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -233,7 +316,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5C820198132650FC00341B5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C8201A7132650FC00341B5C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5C820199132650FC00341B5C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5C42959E131F358000704B36 /* Sources */ = {
@@ -249,6 +356,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5C820196132650FC00341B5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CA4068213269DBC00264DCC /* OCBorderTests.m in Sources */,
+				5CA406871326AE6000264DCC /* OCColorTests.m in Sources */,
+				5C72574A133410440040D3BB /* OCColorPairTests.m in Sources */,
+				5CD61A4813342BA200C69FAF /* OCAttributeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -256,6 +374,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				5C4295B0131F358100704B36 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5C8201A5132650FC00341B5C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C8201A6132650FC00341B5C /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -329,6 +455,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OCCurses/OCCurses-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "OCCurses/OCCurses-Info.plist";
 				INSTALL_PATH = "@executable_path";
 				OTHER_LDFLAGS = (
@@ -337,6 +464,47 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		5C8201AD132650FC00341B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OCCursesTests/OCCursesTests-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = "OCCursesTests/OCCursesTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		5C8201AE132650FC00341B5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OCCursesTests/OCCursesTests-Prefix.pch";
+				INFOPLIST_FILE = "OCCursesTests/OCCursesTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -350,7 +518,7 @@
 				5C4295B4131F358100704B36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5C4295B5131F358100704B36 /* Build configuration list for PBXNativeTarget "OCCurses" */ = {
 			isa = XCConfigurationList;
@@ -359,7 +527,16 @@
 				5C4295B7131F358100704B36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		5C8201AF132650FC00341B5C /* Build configuration list for PBXNativeTarget "OCCursesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C8201AD132650FC00341B5C /* Debug */,
+				5C8201AE132650FC00341B5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

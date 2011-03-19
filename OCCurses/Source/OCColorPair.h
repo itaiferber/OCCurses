@@ -42,8 +42,8 @@
  text attribute using their identifiers.
  */
 @interface OCColorPair : OCAttribute {
-	OCColor *foregroundColor;
-	OCColor *backgroundColor;
+	OCColor *_foregroundColor;
+	OCColor *_backgroundColor;
 }
 
 #pragma mark Properties
@@ -58,7 +58,7 @@
  @param aBackground the background color to use
  @returns an autoreleased color pair object
  */
-+ (id)colorPairWithForegroundColor:(OCColor *)aForeground background:(OCColor *)aBackground;
++ (id)colorPairWithForegroundColor:(OCColor *)aForeground backgroundColor:(OCColor *)aBackground;
 
 /*!
  Initializes a new color pair with a statically created identifier.
@@ -66,6 +66,6 @@
  @pstsm aBackground a background color to use
  @returns an initialized color pair object
  */
-- (id)initWithForegroundColor:(OCColor *)aForeground background:(OCColor *)aBackground;
+- (id)initWithForegroundColor:(OCColor *)aForeground backgroundColor:(OCColor *)aBackground;
 
 @end

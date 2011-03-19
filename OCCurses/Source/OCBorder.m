@@ -33,11 +33,10 @@
 
 @implementation OCBorder
 
-#pragma mark Synthesis
+#pragma mark - Synthesis
 @synthesize borderComponents;
 
-#pragma mark -
-#pragma mark Initialization
+#pragma mark - Initialization
 + (id)borderWithComponentString:(NSString *)aString {
 	return [[[self alloc] initWithComponentString:aString] autorelease];
 }
@@ -45,7 +44,7 @@
 - (id)initWithComponentString:(NSString *)aString {
 	if ((self = [super init])) {
 		if (aString && [aString length] == 8) {
-			borderComponents = [aString copy];
+			_borderComponents = [aString copy];
 		} else {
 			[self release], self = nil;
 		}
@@ -55,45 +54,57 @@
 }
 
 
-#pragma mark -
-#pragma mark Deallocation
+#pragma mark - Deallocation
 - (void)dealloc {
-	[borderComponents release], borderComponents = nil;
+	[_borderComponents release], _borderComponents = nil;
 	[super dealloc];
 }
 
-#pragma mark -
-#pragma mark Border Point Accessors
+#pragma mark - Border Components
 - (unichar)leftFill {
-	return [borderComponents characterAtIndex:0];
+	return [_borderComponents characterAtIndex:0];
 }
 
 - (unichar)rightFill {
-	return [borderComponents characterAtIndex:1];
+	return [_borderComponents characterAtIndex:1];
 }
 
 - (unichar)topFill {
-	return [borderComponents characterAtIndex:2];
+	return [_borderComponents characterAtIndex:2];
 }
 
 - (unichar)bottomFill {
-	return [borderComponents characterAtIndex:3];
+	return [_borderComponents characterAtIndex:3];
 }
 
 - (unichar)topLeftCorner {
-	return [borderComponents characterAtIndex:4];
+	return [_borderComponents characterAtIndex:4];
 }
 
 - (unichar)topRightCorner {
-	return [borderComponents characterAtIndex:5];
+	return [_borderComponents characterAtIndex:5];
 }
 
 - (unichar)bottomLeftCorner {
-	return [borderComponents characterAtIndex:6];
+	return [_borderComponents characterAtIndex:6];
 }
 
 - (unichar)bottomRightCorner {
-	return [borderComponents characterAtIndex:7];
+	return [_borderComponents characterAtIndex:7];
+}
+
+#pragma mark - Is Equal
+- (BOOL)isEqual:(id)object {
+	if ([object isKindOfClass:[OCBorder class]]) {
+		return [((OCBorder *)object).borderComponents isEqualToString:_borderComponents];
+	} else {
+		return NO;
+	}
+}
+
+#pragma mark - Description
+- (NSString *)description {
+	return [NSString stringWithFormat:@"<OCBorder: %@>", _borderComponents];
 }
 
 @end

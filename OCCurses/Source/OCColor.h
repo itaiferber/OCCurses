@@ -32,18 +32,11 @@
 #include <curses.h>
 
 /*!
- @typedef OCColorIdentifier
- @discussion A convenience typedef for ensuring only specific color identifiers.
- ncurses colors are integers between 0 and 7.
- */
-typedef unsigned short OCColorIdentifier;
-
-/*!
  @enum OCColorIdentifier
  @discussion A convenience enumeration for ensuring only specific color definitions.
  ncurses colors are integers between 0 and 7.
  */
-extern enum OCColorIdentifier {
+typedef enum {
 	OCColorBlack = COLOR_BLACK,
 	OCColorRed = COLOR_RED,
 	OCColorGreen = COLOR_GREEN,
@@ -52,7 +45,7 @@ extern enum OCColorIdentifier {
 	OCColorMagenta = COLOR_MAGENTA,
 	OCColorCyan = COLOR_CYAN,
 	OCColorWhite = COLOR_WHITE
-};
+} OCColorIdentifier;
 
 /*!
  @class OCColor
@@ -61,7 +54,7 @@ extern enum OCColorIdentifier {
  applied to text.
  */
 @interface OCColor : NSObject {
-	OCColorIdentifier colorIdentifier;
+	OCColorIdentifier _colorIdentifier;
 }
 
 #pragma mark Properties

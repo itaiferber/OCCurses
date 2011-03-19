@@ -33,21 +33,68 @@
 
 @implementation OCAttribute
 
-#pragma mark Synthesis
+#pragma mark - Synthesis
 @synthesize attributeIdentifier;
 
-#pragma mark -
-#pragma mark Initialization
+#pragma mark - Initialization
 + (id)attributeWithAttributeIdentifier:(OCAttributeIdentifier)anIdentifier {
 	return [[[self alloc] initWithAttributeIdentifier:anIdentifier] autorelease];
 }
 
 - (id)initWithAttributeIdentifier:(OCAttributeIdentifier)anIdentifier {
 	if ((self = [super init])) {
-		attributeIdentifier = anIdentifier;
+		_attributeIdentifier = anIdentifier;
 	}
 	
 	return self;
+}
+
+#pragma mark - Is Equal
+- (BOOL)isEqual:(id)object {
+	if ([object isKindOfClass:[OCAttribute class]]) {
+		return ((OCAttribute *)object).attributeIdentifier == _attributeIdentifier;
+	} else {
+		return NO;
+	}
+}
+
+#pragma mark - Description
+- (NSString *)description {
+	NSString *attributeDescription;
+	switch (_attributeIdentifier) {
+		case OCAttributeNormal:
+			attributeDescription = @"OCAttributeNormal";
+			break;
+		case OCAttributeStandout:
+			attributeDescription = @"OCAttributeStandout";
+			break;
+		case OCAttributeUnderline:
+			attributeDescription = @"OCAttributeUnderline";
+			break;
+		case OCAttributeReverse:
+			attributeDescription = @"OCAttributeReverse";
+			break;
+		case OCAttributeBlink:
+			attributeDescription = @"OCAttributeBlink";
+			break;
+		case OCAttributeDim:
+			attributeDescription = @"OCAttributeDim";
+			break;
+		case OCAttributeAlternativeCharacterSet:
+			attributeDescription = @"OCAttributeAlternateCharacterSet";
+			break;
+		case OCAttributeInvisible:
+			attributeDescription = @"OCAttributeInvisible";
+			break;
+		case OCAttributeProtected:
+			attributeDescription = @"OCAttributeProtected";
+			break;
+		default:
+			attributeDescription = nil;
+			break;
+	}
+	
+	return [NSString stringWithFormat:@"<OCAttribute: %@>", attributeDescription];
 }
 
 @end

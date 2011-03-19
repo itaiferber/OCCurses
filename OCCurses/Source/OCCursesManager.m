@@ -32,7 +32,8 @@
 
 @implementation OCCursesManager
 
-#pragma mark Initialization
+#pragma mark - Initialization
+#ifndef DEBUG
 __attribute__((constructor))
 void initialize () {
 	initscr();	
@@ -40,27 +41,18 @@ void initialize () {
 	cbreak();
 	noecho();
 	halfdelay(0);
+	
+	inCursesMode = YES;
 }
 
-#pragma mark -
-#pragma mark Deallocation
+#pragma mark - Deallocation
 __attribute__((destructor))
 void deallocate () {
 	endwin();
 }
+#endif
 
-#pragma mark -
-#pragma mark State Methods
-+ (BOOL)hasColors {
-	return has_colors();
-}
-
-+ (void)startColors {
-	if (has_colors()) {
-		start_color();
-	}
-}
-
+#pragma mark - State Methods
 static BOOL inCursesMode = YES;
 + (BOOL)isInCursesMode {
 	return inCursesMode;
@@ -79,8 +71,17 @@ static BOOL inCursesMode = YES;
 	}
 }
 
-#pragma mark -
-#pragma mark Terminal Settings
++ (BOOL)hasColors {
+	return has_colors();
+}
+
++ (void)startColors {
+	if (has_colors()) {
+		start_color();
+	}
+}
+
+#pragma mark - Terminal Settings
 + (BOOL)hasKey:(OCKey)aKey {
 	return has_key(aKey) == OK;
 }
