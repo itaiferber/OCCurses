@@ -10,8 +10,17 @@
 #import "OCAttribute.h"
 
 
+/*!
+ @class OCAttributeTests
+ @discussion A unit test class for OCAttribute.
+ */
 @interface OCAttributeTests : SenTestCase {}
 
-- (void)testValidAttributeCreation;
+/*!
+ @test Test Creation With Valid Attribute Identifier
+ @discussion Tests the creation of an OCAttribute with a valid identifier and verifies it to not be
+ nil.
+ */
+- (void)testCreationWithValidAttributeIdentifier;
 
 @end

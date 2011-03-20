@@ -20,7 +20,7 @@ static NSAutoreleasePool *pool = nil;
 }
 
 #pragma mark - Tests
-- (void)testValidAttributeCreation {
+- (void)testCreationWithValidAttributeIdentifier {
 	OCAttribute *attribute = [OCAttribute attributeWithAttributeIdentifier:OCAttributeNormal];
 	STAssertNotNil(attribute, @"FAILURE: Expected attribute to be initialized correctly (instead %@)!", attribute);
 	STAssertEquals(attribute.attributeIdentifier, OCAttributeNormal, @"FAILURE: Expected attribute identifier to be normal (instead %d)!", attribute.attributeIdentifier);
