@@ -31,10 +31,10 @@
 #import "OCWindow.h"
 
 #define EVALUATE_WITH_ARGUMENT_LIST(format, argumentList, statement, returnType) va_list argumentList; \
-																				  va_start(argumentList, format); \
-																				  returnType result = statement; \
-																				  va_end(argumentList); \
-																				  return result;
+																				 va_start(argumentList, format); \
+																				 returnType result = statement; \
+																				 va_end(argumentList); \
+																				 return result;
 #define UPDATE_PANELS update_panels(), doupdate()
 
 @implementation OCWindow
@@ -91,6 +91,7 @@ static OCWindow *mainWindow = nil;
 }
 
 - (id)initWithTitle:(NSString *)aTitle frame:(NSRect)aFrame parentWindow:(OCWindow *)aWindow {
+	if (!aWindow) return [self initWithTitle:aTitle frame:aFrame];
 	if ((self = [super init])) {
 		_window = newwin((int)_frame.size.height, (int)_frame.size.width, (int)_frame.origin.y, (int)_frame.origin.x);
 		if (_window != NULL) {

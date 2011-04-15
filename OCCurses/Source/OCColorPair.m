@@ -44,14 +44,11 @@
 
 static OCAttributeIdentifier currentPairIdentifier = 1;
 - (id)initWithForegroundColor:(OCColor *)aForeground backgroundColor:(OCColor *)aBackground {
+	if (!(aForeground || aBackground)) return nil;
 	if ((self = [super initWithAttributeIdentifier:currentPairIdentifier])) {
-		if (aForeground && aBackground) {
-			_foregroundColor = [aForeground retain];
-			_backgroundColor = [aBackground retain];
-			init_pair(currentPairIdentifier++, _foregroundColor.colorIdentifier, _backgroundColor.colorIdentifier);
-		} else {
-			[self release], self = nil;
-		}
+		_foregroundColor = [aForeground retain];
+		_backgroundColor = [aBackground retain];
+		init_pair(currentPairIdentifier++, _foregroundColor.colorIdentifier, _backgroundColor.colorIdentifier);
 	}
 	
 	return self;
