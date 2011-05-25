@@ -34,7 +34,7 @@
 @implementation OCAttribute
 
 #pragma mark - Synthesis
-@synthesize attributeIdentifier;
+@synthesize attributeIdentifier = _attributeIdentifier;
 
 #pragma mark - Initialization
 + (id)attributeWithAttributeIdentifier:(OCAttributeIdentifier)anIdentifier {

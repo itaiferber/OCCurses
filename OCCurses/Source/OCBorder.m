@@ -34,7 +34,7 @@
 @implementation OCBorder
 
 #pragma mark - Synthesis
-@synthesize borderComponents;
+@synthesize borderComponents = _borderComponents;
 
 #pragma mark - Initialization
 + (id)borderWithComponentString:(NSString *)aString {
