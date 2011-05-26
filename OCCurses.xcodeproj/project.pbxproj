@@ -518,7 +518,7 @@
 				5C4295B4131F358100704B36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		5C4295B5131F358100704B36 /* Build configuration list for PBXNativeTarget "OCCurses" */ = {
 			isa = XCConfigurationList;
@@ -527,7 +527,7 @@
 				5C4295B7131F358100704B36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		5C8201AF132650FC00341B5C /* Build configuration list for PBXNativeTarget "OCCursesTests" */ = {
 			isa = XCConfigurationList;
@@ -536,7 +536,7 @@
 				5C8201AE132650FC00341B5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
