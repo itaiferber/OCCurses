@@ -20,10 +20,10 @@
 		5C4295C2131F39EF00704B36 /* OCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295C0131F39EF00704B36 /* OCColor.m */; };
 		5C4295C5131F3CB300704B36 /* OCColorPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4295C3131F3CB300704B36 /* OCColorPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C4295C6131F3CB300704B36 /* OCColorPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295C4131F3CB300704B36 /* OCColorPair.m */; };
-		5C4295C9131F3E4800704B36 /* OCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4295C7131F3E4700704B36 /* OCAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C4295CA131F3E4800704B36 /* OCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295C8131F3E4800704B36 /* OCAttribute.m */; };
 		5C4295CD131F44FF00704B36 /* OCWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4295CB131F44FD00704B36 /* OCWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C4295CE131F44FF00704B36 /* OCWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295CC131F44FE00704B36 /* OCWindow.m */; };
+		5C56DDE0138EBE1400DF5DD5 /* OCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C56DDDF138EBE1400DF5DD5 /* OCAttribute.h */; };
 		5C72574A133410440040D3BB /* OCColorPairTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C725749133410440040D3BB /* OCColorPairTests.m */; };
 		5C8201A7132650FC00341B5C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C8201A5132650FC00341B5C /* InfoPlist.strings */; };
 		5C8201B21326511D00341B5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C085486132183B00003DEE8 /* Foundation.framework */; };
@@ -50,10 +50,10 @@
 		5C4295C0131F39EF00704B36 /* OCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCColor.m; sourceTree = "<group>"; };
 		5C4295C3131F3CB300704B36 /* OCColorPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCColorPair.h; sourceTree = "<group>"; };
 		5C4295C4131F3CB300704B36 /* OCColorPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCColorPair.m; sourceTree = "<group>"; };
-		5C4295C7131F3E4700704B36 /* OCAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCAttribute.h; sourceTree = "<group>"; };
 		5C4295C8131F3E4800704B36 /* OCAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCAttribute.m; sourceTree = "<group>"; };
 		5C4295CB131F44FD00704B36 /* OCWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCWindow.h; sourceTree = "<group>"; };
 		5C4295CC131F44FE00704B36 /* OCWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCWindow.m; sourceTree = "<group>"; };
+		5C56DDDF138EBE1400DF5DD5 /* OCAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCAttribute.h; sourceTree = "<group>"; };
 		5C725748133410440040D3BB /* OCColorPairTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OCColorPairTests.h; path = Tests/OCColorPairTests.h; sourceTree = "<group>"; };
 		5C725749133410440040D3BB /* OCColorPairTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OCColorPairTests.m; path = Tests/OCColorPairTests.m; sourceTree = "<group>"; };
 		5C82019B132650FC00341B5C /* OCCursesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OCCursesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,7 +177,7 @@
 		5C4295BE131F39E200704B36 /* Attributes */ = {
 			isa = PBXGroup;
 			children = (
-				5C4295C7131F3E4700704B36 /* OCAttribute.h */,
+				5C56DDDF138EBE1400DF5DD5 /* OCAttribute.h */,
 				5C4295C8131F3E4800704B36 /* OCAttribute.m */,
 				5C4295BA131F35CE00704B36 /* OCBorder.h */,
 				5C4295BB131F35CE00704B36 /* OCBorder.m */,
@@ -233,12 +233,12 @@
 				5C4295BC131F35CE00704B36 /* OCBorder.h in Headers */,
 				5C4295C1131F39EF00704B36 /* OCColor.h in Headers */,
 				5C4295C5131F3CB300704B36 /* OCColorPair.h in Headers */,
-				5C4295C9131F3E4800704B36 /* OCAttribute.h in Headers */,
 				5C4295CD131F44FF00704B36 /* OCWindow.h in Headers */,
 				5C059D191320151900CF274E /* OCCursesManager.h in Headers */,
 				5C059D2313201A7800CF274E /* OCCharacter.h in Headers */,
 				5C0AD64413207DBA00BF7B1D /* OCKey.h in Headers */,
 				5C0AD64A132091BC00BF7B1D /* OCCursesFramework.h in Headers */,
+				5C56DDE0138EBE1400DF5DD5 /* OCAttribute.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
