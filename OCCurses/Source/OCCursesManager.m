@@ -83,6 +83,10 @@ void deallocate () {
 #endif
 
 #pragma mark - Terminal Settings
++ (NSSize)terminalSize {
+	return NSMakeSize(LINES, COLS);
+}
+
 + (BOOL)hasKey:(OCKey)aKey {
 	return has_key(aKey) == OK;
 }

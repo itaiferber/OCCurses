@@ -65,6 +65,12 @@
 
 #pragma mark Properties
 /*!
+ Returns the current size of the terminal window.
+ @returns the size of the terminal
+ */
++ (NSSize)terminalSize;
+
+/*!
  Returns whether the current terminal has color capabilities or not. By default, color support is
  turned off.
  @returns whether colors can be used
