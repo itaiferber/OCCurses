@@ -236,6 +236,11 @@
 
 #pragma mark Printing Methods
 /*!
+ Clears the window.
+ */
+- (void)clear;
+
+/*!
  Writes the given format to the window at the current cursor position, returning whether the
  operation was successful.
  @param aFormat the format to write

@@ -42,7 +42,7 @@
 }
 
 - (id)initWithComponentString:(NSString *)aString {
-	if (!(aString || [aString length] == 8)) return nil;
+	if (!(aString && [aString length] == 8)) return nil;
 	if ((self = [super init])) {
 		_borderComponents = [aString copy];
 	}

@@ -264,6 +264,11 @@ static OCWindow *mainWindow = nil;
 
 #pragma mark -
 #pragma mark Printing Methods
+- (void)clear {
+	wclear(_window);
+	wrefresh(_window);
+}
+
 - (BOOL)writeToWindow:(NSString *)aFormat, ... {
 	EVALUATE_WITH_ARGUMENT_LIST(aFormat, aList, [self writeToWindow:aFormat arguments:aList], BOOL);
 }

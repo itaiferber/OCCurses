@@ -23,7 +23,7 @@
 		5C4295CA131F3E4800704B36 /* OCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295C8131F3E4800704B36 /* OCAttribute.m */; };
 		5C4295CD131F44FF00704B36 /* OCWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4295CB131F44FD00704B36 /* OCWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C4295CE131F44FF00704B36 /* OCWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4295CC131F44FE00704B36 /* OCWindow.m */; };
-		5C56DDE0138EBE1400DF5DD5 /* OCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C56DDDF138EBE1400DF5DD5 /* OCAttribute.h */; };
+		5C56DDE0138EBE1400DF5DD5 /* OCAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C56DDDF138EBE1400DF5DD5 /* OCAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C72574A133410440040D3BB /* OCColorPairTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C725749133410440040D3BB /* OCColorPairTests.m */; };
 		5C8201A7132650FC00341B5C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C8201A5132650FC00341B5C /* InfoPlist.strings */; };
 		5C8201B21326511D00341B5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C085486132183B00003DEE8 /* Foundation.framework */; };
@@ -230,6 +230,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C56DDE0138EBE1400DF5DD5 /* OCAttribute.h in Headers */,
 				5C4295BC131F35CE00704B36 /* OCBorder.h in Headers */,
 				5C4295C1131F39EF00704B36 /* OCColor.h in Headers */,
 				5C4295C5131F3CB300704B36 /* OCColorPair.h in Headers */,
@@ -238,7 +239,6 @@
 				5C059D2313201A7800CF274E /* OCCharacter.h in Headers */,
 				5C0AD64413207DBA00BF7B1D /* OCKey.h in Headers */,
 				5C0AD64A132091BC00BF7B1D /* OCCursesFramework.h in Headers */,
-				5C56DDE0138EBE1400DF5DD5 /* OCAttribute.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,12 +347,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C4295CA131F3E4800704B36 /* OCAttribute.m in Sources */,
 				5C4295BD131F35CE00704B36 /* OCBorder.m in Sources */,
 				5C4295C2131F39EF00704B36 /* OCColor.m in Sources */,
 				5C4295C6131F3CB300704B36 /* OCColorPair.m in Sources */,
-				5C4295CA131F3E4800704B36 /* OCAttribute.m in Sources */,
-				5C4295CE131F44FF00704B36 /* OCWindow.m in Sources */,
 				5C059D1A1320151900CF274E /* OCCursesManager.m in Sources */,
+				5C4295CE131F44FF00704B36 /* OCWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
