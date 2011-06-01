@@ -45,14 +45,15 @@
 #pragma mark - Initialization
 static OCWindow *mainWindow = nil;
 + (id)mainWindow {
-	if (!mainWindow) {
+	static dispatch_once_t predicate;	
+	dispatch_once(&predicate, ^{
 		mainWindow = [[OCWindow alloc] init];
 		mainWindow->_title = nil;
 		mainWindow->_frame = (NSRect){0, 0, 0, 0};
 		mainWindow->_subwindows = [[NSMutableArray alloc] init];
 		mainWindow->_window = stdscr;
 		mainWindow->_panel = new_panel(stdscr);
-	}
+	});
 	
 	return mainWindow;
 }
