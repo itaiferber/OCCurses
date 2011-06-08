@@ -304,10 +304,10 @@ static OCWindow *mainWindow = nil;
 - (BOOL)writeCharacter:(OCCharacter)aCharacter {
 	int yCoordinate, xCoordinate;
 	getyx(_window, yCoordinate, xCoordinate);
-	return [self writeCharacterAtLocation:(NSPoint){xCoordinate, yCoordinate} character:aCharacter];
+	return [self writeCharacter:aCharacter atLocation:(NSPoint){xCoordinate, yCoordinate}];
 }
 
-- (BOOL)writeCharacterAtLocation:(NSPoint)aLocation character:(OCCharacter)aCharacter {
+- (BOOL)writeCharacter:(OCCharacter)aCharacter atLocation:(NSPoint)aLocation {
 	return mvwaddch(_window, aLocation.y, aLocation.x, aCharacter) == OK;
 }
 

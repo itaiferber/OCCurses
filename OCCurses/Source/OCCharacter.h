@@ -35,7 +35,7 @@
  @typedef OCCharacter
  @discussion A convenience typedef used for clarity.
  */
-typedef unichar OCCharacter;
+typedef unsigned int OCCharacter;
 
 /*!
  Miscellaneous redefinitions of ncurses characters. This would be an enumeration if these characters

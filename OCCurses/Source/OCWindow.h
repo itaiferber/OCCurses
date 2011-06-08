@@ -301,11 +301,11 @@
 
 /*!
  Writes a character to the screen at the given location, moving the cursor to that location.
- @param aLocation the location to write to
  @param aCharacter the character to write
+ @param aLocation the location to write to
  @returns whether writing succeeded
  */
-- (BOOL)writeCharacterAtLocation:(NSPoint)aLocation character:(OCCharacter)aCharacter;
+- (BOOL)writeCharacter:(OCCharacter)aCharacter atLocation:(NSPoint)aLocation;
 
 
 #pragma mark Scanning Methods
