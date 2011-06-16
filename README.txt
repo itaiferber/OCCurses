@@ -4,17 +4,13 @@ by Itai Ferber - http://itaiferber.com
 How to use OCCurses
 ===================
 
-OCCurses is an Objective-C/Cocoa wrapper for the ncurses C library bundled with almost every installation of Unix. It
-makes it easy to incorporate the power of ncurses into your command-line application without needing to delve into the
-ncurses C interface.
+OCCurses is an Objective-C/Cocoa wrapper for the ncurses C library bundled with almost every installation of Unix. It makes it easy to incorporate the power of ncurses into your command-line application without needing to delve into the ncurses C interface.
 
-The ncurses project is developed and maintained by the Free Software Foundation and the GNU Project. Read about it here:
-http://www.gnu.org/software/ncurses/
+The ncurses project is developed and maintained by the Free Software Foundation and the GNU Project. Read about it here: http://www.gnu.org/software/ncurses/
 
 
 Using OCCurses is easy. To link your project to the OCCurses framework, follow these steps:
-1. Set OCCurses to Release mode. In Debug mode (intended for testing), OCCursesManager will not start the ncurses
-environment upon launch, and the code will not work.
+1. Set OCCurses to Release mode. In Debug mode (intended for testing), OCCursesManager will not start the ncurses environment upon launch, and the code will not work.
 2. Build OCCurses normally.
 3. Open up your application's Xcode project, and select the application target.
 4. Hit 'Add' under the 'Link Binary With Libraries' heading, and add the compiled framework.
@@ -23,17 +19,13 @@ environment upon launch, and the code will not work.
 
 To use the framework in your code:
 1. Make sure you #import the OCCursesFramework.h header in whatever classes you wish to use the framework.
-2. In the class that initializes your code, simply start using the framework! OCCursesManager automatically starts the
-terminal in curses mode at program startup, so all you have to do is simply get to work (it will automatically exit
-curses mode at program termination, so the environment is managed for you).
+2. In the class that initializes your code, simply start using the framework! OCCursesManager automatically starts the terminal in curses mode at program startup, so all you have to do is simply get to work (it will automatically exit curses mode at program termination, so the environment is managed for you).
 
 
 A note about ncurses
 ====================
 
-If you are unfamiliar with the ncurses framework, it is a good idea that you read up on it before using OCCurses
-blindly. There is an excellent tutorial for ncurses here (http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/), and it is
-recommended that you look into it before starting a project.
+If you are unfamiliar with the ncurses framework, it is a good idea that you read up on it before using OCCurses blindly. There is an excellent tutorial for ncurses here (http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/), and it is recommended that you look into it before starting a project.
 
 A basic ncurses program follows a general runtime path like so:
 1. Program initialization - call initscr() and terminal setting functions like cbreak().
@@ -48,9 +40,7 @@ These steps are simplified with OCCurses:
 4. Exit the program - handled automatically.
 
 
-That's it! Using OCCurses is very simple. If you have trouble with the code, or want to make a feature request or report
-a bug (or even contribute some improvements), you can get in touch with me using the info below. I hope you enjoy using
-OCCurses!
+That's it! Using OCCurses is very simple. If you have trouble with the code, or want to make a feature request or report a bug (or even contribute some improvements), you can get in touch with me using the info below. I hope you enjoy using OCCurses!
 
 Enjoy,
 Itai Ferber
