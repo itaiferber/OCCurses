@@ -48,6 +48,9 @@ typedef struct {
  Creates a new component structure from the given string. Because using strings results in a loss
  of information, this is not safe for use with special characters (all special characters created
  within the string will revert to their 'default' form; e.g. OCCharacterUpperLeftCorner -> 'k').
+ 
+ The string must be formatted in the following order: Top Left Corner, Top Border, Top Right Corner,
+ Left Border, Right Border, Bottom Left Corner, Bottom Border, Bottom Right Corner.
  @param string the string to create the components from (precondition: string != nil)
  @returns a newly created border components structure
  */
@@ -56,6 +59,8 @@ extern OCBorderComponents OCBorderComponentsFromString (NSString *string);
 /*!
  Creates a new component structure from the given integer array. This is safe for use with special
  characters.
+ The array must be formatted in the following order: Top Left Corner, Top Border, Top Right Corner,
+ Left Border, Right Border, Bottom Left Corner, Bottom Border, Bottom Right Corner.
  @param array the array of integers (characters) to use (precondition: array != NULL &&
  sizeof(array) / sizeof(typeof(array[0])) == 8)
  */
@@ -98,6 +103,7 @@ extern BOOL OCEqualBorderComponents (OCBorderComponents first, OCBorderComponent
  Creates a new border with the given component string. Since NSString stores characters in unichar
  format, this constructor is not safe for use with special OCCharacters (OCCharacterDiamond, for
  instance). They will get overridden by their default form (OCCharacterUpperLeftCorner -> 'k').
+ @see OCBorderComponentsFromString for string formatting instructions.
  @param theString the component string (precondition: aString != nil && [aString length] == 8)
  @returns an autoreleased border object
  */
@@ -114,6 +120,7 @@ extern BOOL OCEqualBorderComponents (OCBorderComponents first, OCBorderComponent
  Initializes a new border with the given component string. Since NSString stores characters in 
  unichar format, this constructor is not safe for use with special OCCharacters (OCCharacterDiamond,
  for instance). They will get overridden by their default form (OCCharacterUpperLeftCorner -> 'k').
+ @see OCBorderComponentsFromString for string formatting instructions.
  @param theString the component string (precondition: aString != nil && [aString length] == 8)
  @returns an initialized border object
  */
