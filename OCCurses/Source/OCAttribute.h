@@ -65,16 +65,16 @@ typedef enum {
 #pragma mark Initializers
 /*!
  Creates a new text attribute with the given identifier.
- @param anIdentifier the identifier to use
+ @param theIdentifier the identifier to use
  @returns an autoreleased text attribute object
  */
-+ (id)attributeWithAttributeIdentifier:(OCAttributeIdentifier)anIdentifier;
++ (id)attributeWithAttributeIdentifier:(OCAttributeIdentifier)theIdentifier;
 
 /*!
  Initializes a new text attribute with the given identifier.
- @param anIdentifier the identifier to use
+ @param theIdentifier the identifier to use
  @returns an initialized text attribute object
  */
-- (id)initWithAttributeIdentifier:(OCAttributeIdentifier)anIdentifier;
+- (id)initWithAttributeIdentifier:(OCAttributeIdentifier)theIdentifier;
 
 @end

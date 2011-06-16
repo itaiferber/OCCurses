@@ -33,8 +33,8 @@
 
 @interface OCColor ()
 #pragma mark - Private Methods
-+ (id)colorWithColorIdentifier:(OCColorIdentifier)anIdentifier;
-- (id)initWithColorIdentifier:(OCColorIdentifier)anIdentifier;
++ (id)colorWithColorIdentifier:(OCColorIdentifier)theIdentifier;
+- (id)initWithColorIdentifier:(OCColorIdentifier)theIdentifier;
 @end
 
 #pragma mark -
@@ -44,13 +44,13 @@
 @synthesize colorIdentifier = _colorIdentifier;
 
 #pragma mark - Initialization
-+ (id)colorWithColorIdentifier:(OCColorIdentifier)anIdentifier {
-	return [[[self alloc] initWithColorIdentifier:anIdentifier] autorelease];
++ (id)colorWithColorIdentifier:(OCColorIdentifier)theIdentifier {
+	return [[[self alloc] initWithColorIdentifier:theIdentifier] autorelease];
 }
 
-- (id)initWithColorIdentifier:(OCColorIdentifier)anIdentifier {
+- (id)initWithColorIdentifier:(OCColorIdentifier)theIdentifier {
 	if ((self = [super init])) {
-		_colorIdentifier = anIdentifier;
+		_colorIdentifier = theIdentifier;
 	}
 	
 	return self;
@@ -91,11 +91,8 @@
 
 #pragma mark - Is Equal
 - (BOOL)isEqual:(id)object {
-	if ([object isKindOfClass:[OCColor class]]) {
-		return ((OCColor *)object).colorIdentifier == _colorIdentifier;
-	} else {
-		return NO;
-	}
+	if (![object isKindOfClass:[self class]]) return NO;
+	return ((OCColor *)object).colorIdentifier == _colorIdentifier;
 }
 
 #pragma mark - Description

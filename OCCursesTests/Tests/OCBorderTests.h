@@ -17,34 +17,37 @@
 
 /*!
  @test Test Creation with Nil String
- @discussion Tests the creation of a border using a nil string and verifies it to return nil.
+ @discussion Tests the creation of a border using a nil string and verifies it to throw an
+ exception.
  */
 - (void)testCreationWithNilString;
 
 /*!
  @test Test Creation with Empty String
- @discussion Tests the creation of a border using an empty string and verifies it to return nil.
+ @discussion Tests the creation of a border using an empty string and verifies it to throw an
+ exception.
  */
 - (void)testCreationWithEmptyString;
 
 /*!
  @test Test Creation with Invalid String
  @discussion Tests the creation of a border with an invalid string (of length 9) and verifies it to
- return nil.
+ throw an exception.
  */
 - (void)testCreationWithInvalidString;
 
 /*!
  @test Test Creation with Valid String
- @discussion Tests the creation of a border with a valid string (of length 8) 
+ @discussion Tests the creation of a border with a valid string (of length 8) and verifies it to
+ contain the correct characters.
  */
 - (void)testCreationWithValidString;
 
-/*@
- @test Test Border Contents
- @discussion Tests the creation of a border with a valid string and verifies its contents to be in
- order.
+/*!
+ @test Test Creation with Border Components
+ @discussion Tests the creation of a border with a given border component structure and verifies it
+ to contain the correct characters.
  */
-- (void)testBorderContents;
+- (void)testCreationWithBorderComponents;
 
 @end

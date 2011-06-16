@@ -7,6 +7,8 @@
 //
 
 #import "OCBorderTests.h"
+#include <curses.h>
+#import "OCCharacter.h"
 
 
 @implementation OCBorderTests
@@ -20,35 +22,44 @@ static NSAutoreleasePool *pool = nil;
 
 #pragma mark - Tests
 - (void)testCreationWithNilString {
-	OCBorder *border = [OCBorder borderWithComponentString:nil];
-	STAssertNil(border, @"FAILURE: Expected border to be set to nil (instead %@)!", border);
+	OCBorder *border;
+	STAssertThrows((border = [OCBorder borderWithComponentString:nil]), @"FAILURE: Expected border initialization to throw exception (instead: %@).", border);
 }
 
 - (void)testCreationWithEmptyString {
-	OCBorder *border = [OCBorder borderWithComponentString:@""];
-	STAssertNil(border, @"FAILURE: Expected border to be set to nil (instead %@)!", border);
+	OCBorder *border;
+	STAssertThrows((border = [OCBorder borderWithComponentString:@""]), @"FAILURE: Expected border initialization to throw exception (instead: %@).", border);
 }
 
 - (void)testCreationWithInvalidString {
-	OCBorder *border = [OCBorder borderWithComponentString:@"123456789"];
-	STAssertNil(border, @"FAILURE: Expected border to be set to nil (instead %@)!", border);
+	OCBorder *border;
+	STAssertThrows((border = [OCBorder borderWithComponentString:@"123456789"]), @"FAILURE: Expected border initialization to throw exception (instead: %@).", border);
 }
 
 - (void)testCreationWithValidString {
-	OCBorder *border = [OCBorder borderWithComponentString:@"12345678"];
-	STAssertNotNil(border, @"FAILURE: Expected border to be initialized successfully (instead %@)!", border);
-}
-
-- (void)testBorderContents {
-	OCBorder *border = [OCBorder borderWithComponentString:@"45271368"];
-	STAssertTrue(border.topLeftCorner == '1', @"border.topLeftCorner === 1");
-	STAssertTrue(border.topFill == '2', @"border.topFill === 2");
+	OCBorder *border;
+	STAssertNoThrow((border = [OCBorder borderWithComponentString:@"12345678"]), @"FAILURE: Expected border initialization to complete correctly (instead: %@).", border);
+	STAssertTrue(border.topLeftCorner == '1', @"border.topLeftCorner == %u", border.topLeftCorner);
+	STAssertTrue(border.topFill == '2', @"border.topFill == %u", border.topFill);
 	STAssertTrue(border.topRightCorner == '3', @"border.topRightCorner === 3");
 	STAssertTrue(border.leftFill == '4', @"border.leftFill === 4");
 	STAssertTrue(border.rightFill == '5', @"border.rightFill === 5");
 	STAssertTrue(border.bottomLeftCorner == '6', @"border.bottomLeftCorner === 6");
 	STAssertTrue(border.bottomFill == '7', @"border.bottomFill === 7");
 	STAssertTrue(border.bottomRightCorner == '8', @"border.bottomRightCorner === 8");
+}
+
+- (void)testCreationWithBorderComponents {
+	unsigned int array[8] = {OCCharacterUpperLeftCorner, OCCharacterHorizontalLine, OCCharacterUpperRightCorner, OCCharacterVerticalLine, OCCharacterVerticalLine, OCCharacterLowerLeftCorner, OCCharacterHorizontalLine, OCCharacterLowerRightCorner};
+	OCBorder *border = [OCBorder borderWithComponents:OCBorderComponentsFromArray(array)];
+	STAssertTrue(border.topLeftCorner == OCCharacterUpperLeftCorner, @"border.topLeftCorner === OCCharacterUpperLeftCorner");
+	STAssertTrue(border.topFill == OCCharacterHorizontalLine, @"border.topFill === OCCharacterHorizontalLine");
+	STAssertTrue(border.topRightCorner == OCCharacterUpperRightCorner, @"border.topRightCorner === OCCharacterUpperRightCorner");
+	STAssertTrue(border.leftFill == OCCharacterVerticalLine, @"border.leftFill === OCCharacterVerticalLine");
+	STAssertTrue(border.rightFill == OCCharacterVerticalLine, @"border.rightFill === OCCharacterVerticalLine");
+	STAssertTrue(border.bottomLeftCorner == OCCharacterLowerLeftCorner, @"border.bottomLeftCorner === OCCharacterLowerLeftCorner");
+	STAssertTrue(border.bottomFill == OCCharacterHorizontalLine, @"border.bottomFill === OCCharacterHorizontalLine");
+	STAssertTrue(border.bottomRightCorner == OCCharacterLowerRightCorner, @"border.bottomRightCorner === OCCharacterLowerRightCorner");
 }
 
 #pragma mark - Teardown

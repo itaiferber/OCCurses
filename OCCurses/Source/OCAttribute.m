@@ -37,13 +37,13 @@
 @synthesize attributeIdentifier = _attributeIdentifier;
 
 #pragma mark - Initialization
-+ (id)attributeWithAttributeIdentifier:(OCAttributeIdentifier)anIdentifier {
-	return [[[self alloc] initWithAttributeIdentifier:anIdentifier] autorelease];
++ (id)attributeWithAttributeIdentifier:(OCAttributeIdentifier)theIdentifier {
+	return [[[self alloc] initWithAttributeIdentifier:theIdentifier] autorelease];
 }
 
-- (id)initWithAttributeIdentifier:(OCAttributeIdentifier)anIdentifier {
+- (id)initWithAttributeIdentifier:(OCAttributeIdentifier)theIdentifier {
 	if ((self = [super init])) {
-		_attributeIdentifier = anIdentifier;
+		_attributeIdentifier = theIdentifier;
 	}
 	
 	return self;

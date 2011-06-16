@@ -54,18 +54,18 @@
 #pragma mark Initializers
 /*!
  Creates a new color pair with a statically created identifier.
- @param aForeground the foreground color to use
- @param aBackground the background color to use
+ @param theForeground the foreground color to use (precondition: aForeground != nil)
+ @param theBackground the background color to use (precondition: aBackground != nil)
  @returns an autoreleased color pair object
  */
-+ (id)colorPairWithForegroundColor:(OCColor *)aForeground backgroundColor:(OCColor *)aBackground;
++ (id)colorPairWithForegroundColor:(OCColor *)theForeground backgroundColor:(OCColor *)theBackground;
 
 /*!
  Initializes a new color pair with a statically created identifier.
- @param aForeground the foreground color to use
- @pstsm aBackground a background color to use
+ @param theForeground the foreground color to use (precondition: aForeground != nil)
+ @param theBackground the background color to use (precondition: aBackground != nil)
  @returns an initialized color pair object
  */
-- (id)initWithForegroundColor:(OCColor *)aForeground backgroundColor:(OCColor *)aBackground;
+- (id)initWithForegroundColor:(OCColor *)theForeground backgroundColor:(OCColor *)theBackground;
 
 @end

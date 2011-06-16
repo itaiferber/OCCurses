@@ -439,6 +439,7 @@
 					"-lncurses",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -463,6 +464,7 @@
 					"-lncurses",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -482,6 +484,7 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-lncurses",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -502,6 +505,7 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-lncurses",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;

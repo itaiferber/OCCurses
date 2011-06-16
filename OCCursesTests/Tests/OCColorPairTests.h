@@ -18,14 +18,14 @@
 /*!
  @test Test Creation With Nil Colors
  @discussion Tests the creation of a new color pair object with nil foreground and background
- colors.
+ colors and verifies it to throw an exception.
  */
 - (void)testCreationWithNilColors;
 
 /*!
  @test Test Creation With Valid Colors
  @discussion Tests the creation of a new color pair object with valid foreground and background
- colors.
+ colors and verifies it to contain the correct colors.
  */
 - (void)testCreationWithValidColors;
 

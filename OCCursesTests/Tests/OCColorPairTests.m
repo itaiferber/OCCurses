@@ -20,7 +20,8 @@ static NSAutoreleasePool *pool = nil;
 
 #pragma mark - Tests
 - (void)testCreationWithNilColors {
-	STAssertNil([OCColorPair colorPairWithForegroundColor:nil backgroundColor:nil], @"FAILURE: Expected color pair to be nil with nil foreground and background colors!");
+	OCColorPair *pair;
+	STAssertThrows((pair = [OCColorPair colorPairWithForegroundColor:nil backgroundColor:nil]), @"FAILURE: Expected color pair initialization to throw exception (instead: %@).", pair);
 }
 
 - (void)testCreationWithValidColors {

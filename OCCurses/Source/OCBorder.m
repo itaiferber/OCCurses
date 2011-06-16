@@ -30,78 +30,115 @@
 
 #import "OCBorder.h"
 
+OCBorderComponents OCBorderComponentsFromString (NSString *string) {
+	if (!string || [string length] != 8) @throw NSInvalidArgumentException;
+	const char *characters = [string UTF8String];
+	unsigned int *array = malloc([string length] * sizeof(unsigned int));
+	if (array == NULL) @throw NSMallocException;
+	
+	for (NSUInteger index = 0; index < [string length]; index++) {
+		array[index] = characters[index];
+	}
+	
+	OCBorderComponents components = OCBorderComponentsFromArray(array);
+	free(array);
+	return components;
+}
+
+OCBorderComponents OCBorderComponentsFromArray (const unsigned int *array) {
+	if (array == NULL) @throw NSInvalidArgumentException;
+	return (OCBorderComponents){array[0], array[1], array[2], array[3], array[4], array[5], array[6], array[7]};
+}
+
+BOOL OCEqualBorderComponents (OCBorderComponents first, OCBorderComponents second) {
+	return first.topLeftCorner == second.topLeftCorner && 
+		   first.topFill == second.topFill &&
+		   first.topRightCorner == second.topRightCorner &&
+		   first.leftFill == second.leftFill &&
+		   first.rightFill == second.rightFill &&
+		   first.bottomLeftCorner == second.bottomLeftCorner &&
+		   first.bottomFill == second.bottomFill &&
+		   first.bottomRightCorner == second.bottomRightCorner;
+}
 
 @implementation OCBorder
 
-#pragma mark - Synthesis
-@synthesize borderComponents = _borderComponents;
-
 #pragma mark - Initialization
-+ (id)borderWithComponentString:(NSString *)aString {
-	return [[[self alloc] initWithComponentString:aString] autorelease];
++ (id)borderWithComponentString:(NSString *)theString {
+	return [[[self alloc] initWithComponentString:theString] autorelease];
 }
 
-- (id)initWithComponentString:(NSString *)aString {
-	if (!(aString && [aString length] == 8)) return nil;
++ (id)borderWithComponents:(OCBorderComponents)theComponents {
+	return [[[self alloc] initWithComponents:theComponents] autorelease];
+}
+
+- (id)initWithComponentString:(NSString *)theString {
+	if (!(theString && [theString length] == 8)) @throw NSInvalidArgumentException;
 	if ((self = [super init])) {
-		_borderComponents = [aString copy];
+		_borderComponents = OCBorderComponentsFromString(theString);
 	}
 	
 	return self;
 }
 
-
-#pragma mark - Deallocation
-- (void)dealloc {
-	[_borderComponents release], _borderComponents = nil;
-	[super dealloc];
+- (id)initWithComponents:(OCBorderComponents)theComponents {
+	if ((self = [super init])) {
+		_borderComponents = theComponents;
+	}
+	
+	return self;
 }
 
 #pragma mark - Border Components
-- (unichar)leftFill {
-	return [_borderComponents characterAtIndex:0];
+- (unsigned int)topLeftCorner {
+	return _borderComponents.topLeftCorner;
 }
 
-- (unichar)rightFill {
-	return [_borderComponents characterAtIndex:1];
+- (unsigned int)topFill {
+	return _borderComponents.topFill;
 }
 
-- (unichar)topFill {
-	return [_borderComponents characterAtIndex:2];
+- (unsigned int)topRightCorner {
+	return _borderComponents.topRightCorner;
 }
 
-- (unichar)bottomFill {
-	return [_borderComponents characterAtIndex:3];
+- (unsigned int)leftFill {
+	return _borderComponents.leftFill;
 }
 
-- (unichar)topLeftCorner {
-	return [_borderComponents characterAtIndex:4];
+- (unsigned int)rightFill {
+	return _borderComponents.rightFill;
 }
 
-- (unichar)topRightCorner {
-	return [_borderComponents characterAtIndex:5];
+- (unsigned int)bottomLeftCorner {
+	return _borderComponents.bottomLeftCorner;
 }
 
-- (unichar)bottomLeftCorner {
-	return [_borderComponents characterAtIndex:6];
+- (unsigned int)bottomFill {
+	return _borderComponents.bottomFill;
 }
 
-- (unichar)bottomRightCorner {
-	return [_borderComponents characterAtIndex:7];
+- (unsigned int)bottomRightCorner {
+	return _borderComponents.bottomRightCorner;
 }
 
 #pragma mark - Is Equal
 - (BOOL)isEqual:(id)object {
-	if ([object isKindOfClass:[OCBorder class]]) {
-		return [((OCBorder *)object).borderComponents isEqualToString:_borderComponents];
-	} else {
-		return NO;
-	}
+	if (![object isKindOfClass:[OCBorder class]]) return NO;
+	return OCEqualBorderComponents(_borderComponents, ((OCBorder *)object)->_borderComponents);
 }
 
 #pragma mark - Description
 - (NSString *)description {
-	return [NSString stringWithFormat:@"<OCBorder: %@>", _borderComponents];
+	return [NSString stringWithFormat:@"<OCBorder: %u %u %u %u %u %u %u %u %u>",
+			_borderComponents.topLeftCorner,
+			_borderComponents.topFill,
+			_borderComponents.topRightCorner,
+			_borderComponents.leftFill,
+			_borderComponents.rightFill,
+			_borderComponents.bottomLeftCorner,
+			_borderComponents.bottomFill,
+			_borderComponents.bottomRightCorner];
 }
 
 @end

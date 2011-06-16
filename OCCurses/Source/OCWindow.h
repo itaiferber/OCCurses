@@ -73,66 +73,73 @@
 /*!
  Creates a new autoreleased window with a given title and frame (and a default parent window of 
  stdscr).
- @param aTitle the title to give the window
- @param aFrame the frame to give the window
+ @param theTitle the title to give the window (precondition: theTitle != nil)
+ @param theFrame the frame to give the window
  @returns a new autoreleased window
  */
-+ (id)windowWithTitle:(NSString *)aTitle frame:(NSRect)aFrame;
++ (id)windowWithTitle:(NSString *)theTitle frame:(NSRect)theFrame;
 
 /*!
  Creates a new autoreleased window with a given title, frame, and parent window.
- @param aTitle the title to give the window
- @param aFrame the frame to give the window
- @param aWindow the parent window to create a subwindow for
+ @param theTitle the title to give the window (precondition: theTitle != nil)
+ @param theFrame the frame to give the window
+ @param theWindow the parent window to create a subwindow for
  @returns a new autoreleased window
  */
-+ (id)windowWithTitle:(NSString *)aTitle frame:(NSRect)aFrame parentWindow:(OCWindow *)aWindow;
++ (id)windowWithTitle:(NSString *)theTitle frame:(NSRect)theFrame parentWindow:(OCWindow *)theWindow;
 
 /*!
  Initializes a new autoreleased window with a given title and frame (and a default parent window of 
  stdscr).
- @param aTitle the title to give the window
- @param aFrame the frame to give the window
+ @param theTitle the title to give the window (precondition: theTitle != nil)
+ @param theFrame the frame to give the window
  @returns a new initialized window
  */
-- (id)initWithTitle:(NSString *)aTitle frame:(NSRect)aFrame;
+- (id)initWithTitle:(NSString *)theTitle frame:(NSRect)theFrame;
 
 /*!
  Initializes a new autoreleased window with a given title, frame, and parent window.
- @param aTitle the title to give the window
- @param aFrame the frame to give the window
- @param aWindow the parent window to create a subwindow for
+ @param theTitle the title to give the window (precondition: theTitle != nil)
+ @param theFrame the frame to give the window
+ @param theWindow the parent window to create a subwindow for
  @returns a new initialized window
  */
-- (id)initWithTitle:(NSString *)aTitle frame:(NSRect)aFrame parentWindow:(OCWindow *)aWindow;
+- (id)initWithTitle:(NSString *)theTitle frame:(NSRect)theFrame parentWindow:(OCWindow *)theWindow;
 
 
 #pragma mark Subwindow Methods
 /*!
- Adds a subwindow to the current window.
- @param aWindow the subwindow to add
+ Returns an array of subwindows belonging to the current window.
  */
-- (void)addSubwindow:(OCWindow *)aWindow;
+- (NSArray *)subwindows;
+ 
+/*!
+ Adds a subwindow to the current window.
+ @param theWindow the subwindow to add (precondition: theWindow != nil)
+ */
+- (void)addSubwindow:(OCWindow *)theWindow;
 
 /*!
  Returns the subwindow at the given index.
- @param anIndex the index to retrieve (precondition: the index is valid)
+ @param theIndex the index to retrieve (precondition: index < [_subwindows length])
  @returns the subwindow
  */
-- (OCWindow *)subwindowAtIndex:(NSUInteger)anIndex;
+- (OCWindow *)subwindowAtIndex:(NSUInteger)theIndex;
 
 /*!
- Performs a breadth-level search for a window with the given title in the window hierarchy stemming
+ Performs a breadth-first search for a window with the given title in the window hierarchy stemming
  from this window, and returns it. Returns nil if there is no such titled window.
+ @param theTitle the title of the subwindow to search for (precondition: theTitle != nil)
  @returns a subwindow with the given title
  */
-- (OCWindow *)subwindowWithTitle:(NSString *)aTitle;
+- (OCWindow *)subwindowWithTitle:(NSString *)theTitle;
 
 /*!
- Removes and destroys the given window from the window hierarchy.
- @param aWindow the subwindow to remove (precondition: aWindow is a subwindow of the current window)
+ Removes the given window from the window hierarchy completely (even if it appears multiple times)
+ and destroys it.
+ @param theWindow the subwindow to remove (precondition: theWindow != nil)
  */
-- (void)removeSubwindow:(OCWindow *)aWindow;
+- (void)removeSubwindow:(OCWindow *)theWindow;
 
 
 #pragma mark Window Property Methods
@@ -150,17 +157,17 @@
 
 /*!
  Sets the frame of the window to the given rectangle. Resizes and moves as necessary.
- @param aRect the frame to use (precondition: the frame is valid)
+ @param thePoint the frame to use (precondition: the frame is valid)
  @returns whether the operation was performed successfully
  */
-- (BOOL)setFrame:(NSRect)aRect;
+- (BOOL)setFrame:(NSRect)theFrame;
 
 /*!
  Moves the window to a new origin (the origin of ncurses windows is the top-left corner).
- @param aPoint the point to move the window to (precondition: the point is valid)
+ @param thePoint the point to move the window to (precondition: the point is valid)
  @returns whether the operation was performed successfully
  */
-- (BOOL)setFrameOrigin:(NSPoint)aPoint;
+- (BOOL)setFrameOrigin:(NSPoint)thePoint;
 
 
 #pragma mark Keypad Methods
@@ -174,44 +181,44 @@
 
 /*!
  Enables or disables a keypad for the window.
- @param aFlag whether to enable or disable the keypad
+ @param theFlag whether to enable or disable the keypad
  */
-- (void)setKeypadEnabled:(BOOL)aFlag;
+- (void)setKeypadEnabled:(BOOL)theFlag;
 
 
 #pragma mark Attribute Methods
 /*!
  Enables the given text attribute using wattron() and adds it to a list of enabled attributes.
- @param anAttribute the attribute to apply
+ @param theAttribute the attribute to apply (precondition: theAttribute != nil)
  */
-- (void)enableAttribute:(OCAttribute *)anAttribute;
+- (void)enableAttribute:(OCAttribute *)theAttribute;
 
 /*!
  Disables the given textAttribute using wattroff() and removes it from a list of enabled attributes.
- @param anAttribute the attribute to remove
+ @param theAttribute the attribute to remove (precondition: theAttribute != nil)
  */
-- (void)disableAttribute:(OCAttribute *)anAttribute;
+- (void)disableAttribute:(OCAttribute *)theAttribute;
 
 /*!
  Enables a set of attributes, calling -enableAttribute: using each one.
  @see enableAttribute for an explanation of how attributes are applied
- @param aSet the set of attributes to apply
+ @param theSet the set of attributes to apply (precondition: theSet != nil)
  */
-- (void)enableAttributes:(NSSet *)aSet;
+- (void)enableAttributes:(NSSet *)theSet;
 
 /*!
  Disables a set of attributes, calling -disableAttribute: using each one.
  @see disableAttribute for an explanation of how attributes are removed
- @param aSet the set of attributes to remove
+ @param theSet the set of attributes to remove (precondition: theSet != nil)
  */
-- (void)disableAttributes:(NSSet *)aSet;
+- (void)disableAttributes:(NSSet *)theSet;
 
 /*!
  Sets the given attributes using wattrset() (destroying the previous attribute configuration) and
- replaces the list of enabled attributes with the given one.
- @param aSet the set of attributes to set
+ replaces the list of enabled attributes with the given one. Pass in nil to disable all attributes.
+ @param theSet the set of attributes to set
  */
-- (void)setAttributes:(NSSet *)aSet;
+- (void)setAttributes:(NSSet *)theSet;
 
 /*!
  Disables all attributes using watterset() and replaces the list of enabled attributes with an empty
@@ -228,10 +235,10 @@
 - (OCBorder *)border;
 
 /*!
- Applies a new border to the window (if aBorder is nil, it removes the border).
- @param aBorder the border to set
+ Applies a new border to the window (if theBorder is nil, it removes the border).
+ @param theBorder the border to set
  */
-- (void)setBorder:(OCBorder *)aBorder;
+- (void)setBorder:(OCBorder *)theBorder;
 
 
 #pragma mark Printing Methods
@@ -241,40 +248,45 @@
 - (void)clear;
 
 /*!
+ Refreshes the window for printing and synchronizes with other panels.
+ */
+- (void)refresh;
+
+/*!
  Writes the given format to the window at the current cursor position, returning whether the
  operation was successful.
- @param aFormat the format to write
+ @param theFormat the format to write (precondition: theFormat != nil)
  @returns whether writing succeeded
  */
-- (BOOL)writeToWindow:(NSString *)aFormat, ... NS_FORMAT_FUNCTION(1, 2);
+- (BOOL)writeToWindow:(NSString *)theFormat, ... NS_FORMAT_FUNCTION(1, 2);
 
 /*!
  Writes the given format to the window at the given location, moving the cursor to that location and
  returning whether the operation was successful.
- @param aLocation the location to write to
- @param aFormat the format to write
+ @param theLocation the location to write to (precondition: theLocation is valid)
+ @param theFormat the format to write (precondition: theFormat != nil)
  @returns whether writing succeeded
  */
-- (BOOL)writeToWindowAtLocation:(NSPoint)aLocation format:(NSString *)aFormat, ... NS_FORMAT_FUNCTION(2, 3);
+- (BOOL)writeToWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat, ... NS_FORMAT_FUNCTION(2, 3);
 
 /*!
  Writes the given format and argument list to the window at the current cursor positiong, returning
  whether the operation was successful.
- @param aFormat the format to write
- @param aList the argument list to use
+ @param theFormat the format to write (precondition: theFormat != nil)
+ @param theList the argument list to use
  @returns whether writing succeeded
  */
-- (BOOL)writeToWindow:(NSString *)aFormat arguments:(va_list)aList;
+- (BOOL)writeToWindow:(NSString *)theFormat arguments:(va_list)theList;
 
 /*!
  Writes the given format and argument list to the window at the given location, moving the cursor to
  that location and returning whether the operation was successful.
- @param aLocation the location to write to
- @param aFormat the format to write
- @param aList the argument list to use
+ @param theLocation the location to write to (precondition: theLocation is valid)
+ @param theFormat the format to write (precondition: theFormat != nil)
+ @param theList the argument list to use
  @returns whether writing succeeded
  */
-- (BOOL)writeToWindowAtLocation:(NSPoint)aLocation format:(NSString *)aFormat arguments:(va_list)aList;
+- (BOOL)writeToWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat arguments:(va_list)theList;
 
 
 #pragma mark Character Methods
@@ -288,58 +300,59 @@
 /*!
  Returns a single keystroke from the user at a given location (if keypad() is enabled, this
  keystroke can be an extended one).
+ @param theLocation the location to accept the key from (precondition: theLocation is valid)
  @returns the key pressed
  */
-- (OCKey)getKeyFromLocation:(NSPoint)aLocation;
+- (OCKey)getKeyFromLocation:(NSPoint)theLocation;
 
 /*!
  Writes a character to the screen at the current cursor position.
- @param aCharacter the character to write
+ @param theCharacter the character to write
  @returns whether writing succeeded
  */
-- (BOOL)writeCharacter:(OCCharacter)aCharacter;
+- (BOOL)writeCharacter:(OCCharacter)theCharacter;
 
 /*!
  Writes a character to the screen at the given location, moving the cursor to that location.
- @param aCharacter the character to write
- @param aLocation the location to write to
+ @param theCharacter the character to write
+ @param theLocation the location to write to (precondition: theLocation is valid)
  @returns whether writing succeeded
  */
-- (BOOL)writeCharacter:(OCCharacter)aCharacter atLocation:(NSPoint)aLocation;
+- (BOOL)writeCharacter:(OCCharacter)theCharacter atLocation:(NSPoint)theLocation;
 
 
 #pragma mark Scanning Methods
 /*!
  Scans a format from the window at the current cursor position.
- @param aFormat the format to scan
+ @param theFormat the format to scan (precondition: theFormat != nil)
  @returns whether scanning succeeded
  */
-- (BOOL)scanFromWindow:(NSString *)aFormat, ... NS_FORMAT_FUNCTION(1, 2);
+- (BOOL)scanFromWindow:(NSString *)theFormat, ... NS_FORMAT_FUNCTION(1, 2);
 
 /*!
  Scans a format from the window at the given location, moving the cursor to that location.
- @param aLocation the location to scan from
- @param aFormat the format to scan
+ @param theLocation the location to scan from (precondition: theLocation is valid)
+ @param theFormat the format to scan (precondition: theFormat != nil)
  @returns whether scanning succeeded
  */
-- (BOOL)scanFromWindowAtLocation:(NSPoint)aLocation format:(NSString *)aFormat, ... NS_FORMAT_FUNCTION(2, 3);
+- (BOOL)scanFromWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat, ... NS_FORMAT_FUNCTION(2, 3);
 
 /*!
  Scans a format from the window at the current cursor position into the given argument list.
- @param aFormat the format to scan
- @param aList the argument list to scan to
+ @param theFormat the format to scan (precondition theFormat != nil)
+ @param theList the argument list to scan to
  @returns whether scanning succeeded
  */
-- (BOOL)scanFromWindow:(NSString *)aFormat arguments:(va_list)aList;
+- (BOOL)scanFromWindow:(NSString *)theFormat arguments:(va_list)theList;
 
 /*!
  Scans a format from the window at the given location, moving the cursor to that location, into the
  given argument list.
- @param aLocation the location to scan from
- @param aFormat the format to scan
- @param aList the argument list to scan to
+ @param theLocation the location to scan from (precondition: theLocation is valid)
+ @param theFormat the format to scan (precondition: theFormat != nil)
+ @param theList the argument list to scan to
  @returns whether scanning succeeded
  */
-- (BOOL)scanFromWindowAtLocation:(NSPoint)aLocation format:(NSString *)aFormat arguments:(va_list)aList;
+- (BOOL)scanFromWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat arguments:(va_list)theList;
 
 @end
