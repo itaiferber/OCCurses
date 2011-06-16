@@ -33,16 +33,14 @@
 OCBorderComponents OCBorderComponentsFromString (NSString *string) {
 	if (!string || [string length] != 8) @throw NSInvalidArgumentException;
 	const char *characters = [string UTF8String];
-	unsigned int *array = malloc([string length] * sizeof(unsigned int));
+	unsigned int *array = alloca([string length] * sizeof(unsigned int));
 	if (array == NULL) @throw NSMallocException;
 	
 	for (NSUInteger index = 0; index < [string length]; index++) {
 		array[index] = characters[index];
 	}
 	
-	OCBorderComponents components = OCBorderComponentsFromArray(array);
-	free(array);
-	return components;
+	return OCBorderComponentsFromArray(array);
 }
 
 OCBorderComponents OCBorderComponentsFromArray (const unsigned int *array) {
