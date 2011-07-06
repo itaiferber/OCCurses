@@ -49,13 +49,14 @@
 	return self;
 }
 
-#pragma mark - Is Equal
+#pragma mark - Equality Testing
 - (BOOL)isEqual:(id)object {
-	if ([object isKindOfClass:[OCAttribute class]]) {
-		return ((OCAttribute *)object).attributeIdentifier == _attributeIdentifier;
-	} else {
-		return NO;
-	}
+	// Hashes are unique; no need to further compare equality.
+	return [object isKindOfClass:[self class]] && [object hash] == [self hash];
+}
+
+- (NSUInteger)hash {
+	return _attributeIdentifier;
 }
 
 #pragma mark - Description

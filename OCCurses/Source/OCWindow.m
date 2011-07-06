@@ -365,21 +365,26 @@ static OCWindow *mainWindow = nil;
 	return result == OK;
 }
 
-#pragma mark - Is Equal
+#pragma mark - Equality Testing
 - (BOOL)isEqual:(id)object {
-	if (![object isKindOfClass:[self class]]) return NO;
+	if (!([object isKindOfClass:[self class]] && [object hash] == [self hash])) return NO;
 	OCWindow *window = (OCWindow *)object;
 
-	BOOL isEqual = NO;
-	isEqual |= [window.title isEqualToString:_title];
-	isEqual |= NSEqualRects(window->_frame, _frame);
-	isEqual |= [window->_subwindows isEqual:_subwindows];
-	isEqual |= [window->_attributes isEqual:_attributes];
-	isEqual |= [window->_border isEqual:_border];
-	isEqual |= window->_keypadEnabled == _keypadEnabled;
-	isEqual |= window->_window == _window;
-	isEqual |= window->_panel == _panel;
-	return isEqual;
+	BOOL isEqual = YES;
+	isEqual &= [window.title isEqualToString:_title];
+	isEqual &= NSEqualRects(window->_frame, _frame);
+	isEqual &= [window->_subwindows isEqual:_subwindows];
+	isEqual &= [window->_attributes isEqual:_attributes];
+	isEqual &= [window->_border isEqual:_border];
+	isEqual &= window->_keypadEnabled == _keypadEnabled;
+	isEqual &= window->_window == _window;
+	isEqual &= window->_panel == _panel;
+	return isEqual ;
+}
+
+- (NSUInteger)hash {
+	// Produces a fairly distinctive hash. Both objects have reliable `-hash` methods.
+	return [_title hash] * [_border hash];
 }
 
 #pragma mark - Description

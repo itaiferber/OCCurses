@@ -120,10 +120,23 @@ BOOL OCEqualBorderComponents (OCBorderComponents first, OCBorderComponents secon
 	return _borderComponents.bottomRightCorner;
 }
 
-#pragma mark - Is Equal
+#pragma mark - Equality Testing
 - (BOOL)isEqual:(id)object {
-	if (![object isKindOfClass:[OCBorder class]]) return NO;
+	if (!([object isKindOfClass:[OCBorder class]] && [object hash] == [self hash])) return NO;
 	return OCEqualBorderComponents(_borderComponents, ((OCBorder *)object)->_borderComponents);
+}
+
+- (NSUInteger)hash {
+	// Produces a fairly distinctive hash. NSString has a reliable `-hash` method.
+	return [[NSString stringWithFormat:@"%u%u%u%u%u%u%u%u", 
+			 _borderComponents.topLeftCorner,
+			 _borderComponents.topFill,
+			 _borderComponents.topRightCorner,
+			 _borderComponents.leftFill,
+			 _borderComponents.rightFill,
+			 _borderComponents.bottomLeftCorner,
+			 _borderComponents.bottomFill,
+			 _borderComponents.bottomRightCorner] hash];
 }
 
 #pragma mark - Description

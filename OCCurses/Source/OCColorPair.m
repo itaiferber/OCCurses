@@ -54,10 +54,15 @@ static OCAttributeIdentifier currentPairIdentifier = 1;
 	return self;
 }
 
-#pragma mark - Is Equal
+#pragma mark - Equality Testing
 - (BOOL)isEqual:(id)object {
-	if (![object isKindOfClass:[self class]]) return NO;
+	if (!([object isKindOfClass:[self class]] && [object hash] == [self hash])) return NO;
 	return [((OCColorPair *)object).foregroundColor isEqual:_foregroundColor] && [((OCColorPair *)object).backgroundColor isEqual:_backgroundColor];
+}
+
+- (NSUInteger)hash {
+	// Produces a fairly distinctive hash. Both objects have reliable `-hash` methods.
+	return [_foregroundColor hash] * [_backgroundColor hash];
 }
 
 #pragma mark - Description

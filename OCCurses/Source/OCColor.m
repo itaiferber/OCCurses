@@ -89,10 +89,14 @@
 	return [self colorWithColorIdentifier:OCColorWhite];
 }
 
-#pragma mark - Is Equal
+#pragma mark - Equality Testing
 - (BOOL)isEqual:(id)object {
-	if (![object isKindOfClass:[self class]]) return NO;
-	return ((OCColor *)object).colorIdentifier == _colorIdentifier;
+	// Hashes are unique; no need to further check equality.
+	return [object isKindOfClass:[self class]] && [object hash] == [self hash];
+}
+
+- (NSUInteger)hash {
+	return _colorIdentifier;
 }
 
 #pragma mark - Description
