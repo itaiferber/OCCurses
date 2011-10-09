@@ -59,15 +59,15 @@ static OCWindow *mainWindow = nil;
 }
 
 + (id)windowWithTitle:(NSString *)theTitle frame:(NSRect)theFrame {
-	return [[[self alloc] initWithTitle:theTitle frame:theFrame] autorelease];
+	return [[self alloc] initWithTitle:theTitle frame:theFrame];
 }
 
 + (id)windowWithTitle:(NSString *)theTitle frame:(NSRect)theFrame parentWindow:(OCWindow *)theWindow {
-	return [[[self alloc] initWithTitle:theTitle frame:theFrame parentWindow:theWindow] autorelease];
+	return [[self alloc] initWithTitle:theTitle frame:theFrame parentWindow:theWindow];
 }
 
 - (id)initWithTitle:(NSString *)theTitle frame:(NSRect)theFrame {
-	if (!theTitle) @throw NSInvalidArgumentException;
+	if (!theTitle) return nil;
 	if ((self = [super init])) {
 		_window = newwin((int)_frame.size.height, (int)_frame.size.width, (int)_frame.origin.y, (int)_frame.origin.x);
 		if (_window != NULL) {
@@ -84,7 +84,6 @@ static OCWindow *mainWindow = nil;
 			[mainWindow addSubwindow:self];
 			UPDATE_PANELS;
 		} else {
-			[self release];
 			return nil;
 		}
 	}
@@ -93,7 +92,7 @@ static OCWindow *mainWindow = nil;
 }
 
 - (id)initWithTitle:(NSString *)theTitle frame:(NSRect)theFrame parentWindow:(OCWindow *)theWindow {
-	if (!theTitle) @throw NSInvalidArgumentException;
+	if (!theTitle) return nil;
 	if (!theWindow) return [self initWithTitle:theTitle frame:theFrame];
 	if ((self = [super init])) {
 		_window = newwin((int)_frame.size.height, (int)_frame.size.width, (int)_frame.origin.y, (int)_frame.origin.x);
@@ -111,28 +110,20 @@ static OCWindow *mainWindow = nil;
 			[theWindow addSubwindow:self];
 			UPDATE_PANELS;
 		} else {
-			[self release], self = nil;
+			self = nil;
 		}
 	}
 	
 	return self;
 }
 
-#pragma mark -
-#pragma mark Deallocation
+#pragma mark - Deallocation
 - (void)dealloc {
-	[_title release], _title = nil;
-	[_subwindows release], _subwindows = nil;
-	[_attributes release], _attributes = nil;
-	[_border release], _border = nil;
-	
 	delwin(_window);
 	del_panel(_panel);
-	[super dealloc];
 }
 
-#pragma mark -
-#pragma mark Subwindow Methods
+#pragma mark - Subwindow Methods
 - (NSArray *)subwindows {
 	return _subwindows;
 }
@@ -146,7 +137,7 @@ static OCWindow *mainWindow = nil;
 }
 
 - (OCWindow *)subwindowWithTitle:(NSString *)theTitle {
-	if (!theTitle) @throw NSInvalidArgumentException;
+	if (!theTitle) return nil;
 	for (OCWindow *subwindow in _subwindows) {
 		if ([subwindow.title isEqualToString:theTitle]) {
 			return subwindow;
@@ -164,15 +155,14 @@ static OCWindow *mainWindow = nil;
 }
 
 - (void)removeSubwindow:(OCWindow *)theWindow {
-	if (!theWindow) @throw NSInvalidArgumentException;
+	if (!theWindow) return;
 	[_subwindows removeObject:theWindow];
 	for (OCWindow *subwindow in _subwindows) {
 		[subwindow->_subwindows removeObject:theWindow];
 	}
 }
 
-#pragma mark -
-#pragma mark Window Property Methods
+#pragma mark - Window Property Methods
 - (NSPoint)cursorLocation {
 	int yCoordinate, xCoordinate;
 	getyx(_window, yCoordinate, xCoordinate);
@@ -206,8 +196,7 @@ static OCWindow *mainWindow = nil;
 	return result == OK;
 }
 
-#pragma mark -
-#pragma mark Keypad Methods
+#pragma mark - Keypad Methods
 - (BOOL)isKeypadEnabled {
 	return _keypadEnabled;
 }
@@ -217,29 +206,28 @@ static OCWindow *mainWindow = nil;
 	_keypadEnabled = theFlag;
 }
 
-#pragma mark -
-#pragma mark Attribute Methods
+#pragma mark -Attribute Methods
 - (void)enableAttribute:(OCAttribute *)theAttribute {
-	if (!theAttribute) @throw NSInvalidArgumentException;
+	if (!theAttribute) return;
 	wattron(_window, [theAttribute isKindOfClass:[OCColorPair class]] ? COLOR_PAIR(theAttribute.attributeIdentifier) : theAttribute.attributeIdentifier);
 	[_attributes addObject:theAttribute];
 }
 
 - (void)disableAttribute:(OCAttribute *)theAttribute {
-	if (!theAttribute) @throw NSInvalidArgumentException;
+	if (!theAttribute) return;
 	wattroff(_window, [theAttribute isKindOfClass:[OCColorPair class]] ? COLOR_PAIR(theAttribute.attributeIdentifier) : theAttribute.attributeIdentifier);
 	[_attributes removeObject:theAttribute];
 }
 
 - (void)enableAttributes:(NSSet *)theSet {
-	if (!theSet) @throw NSInvalidArgumentException;
+	if (!theSet) return;
 	for (OCAttribute *attribute in theSet) {
 		[self enableAttribute:attribute];
 	}
 }
 
 - (void)disableAttributes:(NSSet *)theSet {
-	if (!theSet) @throw NSInvalidArgumentException;
+	if (!theSet) return;
 	for (OCAttribute *attribute in theSet) {
 		[self disableAttribute:attribute];
 	}
@@ -252,16 +240,15 @@ static OCWindow *mainWindow = nil;
 	}
 	
 	wattrset(_window, attributeSum);
-	[_attributes autorelease], _attributes = [theSet copy];
+	_attributes = [theSet copy];
 }
 
 - (void)disableAllAttributes {
 	wattrset(_window, OCAttributeNormal);
-	[_attributes autorelease], _attributes = [[NSMutableSet alloc] init];
+	_attributes = [[NSMutableSet alloc] init];
 }
 
-#pragma mark -
-#pragma mark Border Methods
+#pragma mark -Border Methods
 - (OCBorder *)border {
 	return _border;
 }
@@ -274,13 +261,12 @@ static OCWindow *mainWindow = nil;
 			wborder(_window, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 		}
 		
-		[_border autorelease], _border = [theBorder retain];
+		_border = theBorder;
 		[self refresh];
 	}
 }
 
-#pragma mark -
-#pragma mark Printing Methods
+#pragma mark - Printing Methods
 - (void)clear {
 	wclear(_window);
 	[self refresh];
@@ -292,33 +278,31 @@ static OCWindow *mainWindow = nil;
 }
 
 - (BOOL)writeToWindow:(NSString *)theFormat, ... {
-	if (!theFormat) @throw NSInvalidArgumentException;
+	if (!theFormat) return NO;
 	EVALUATE_WITH_ARGUMENT_LIST(theFormat, aList, [self writeToWindow:theFormat arguments:aList], BOOL);
 }
 
 - (BOOL)writeToWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat, ... {
-	if (!theFormat) @throw NSInvalidArgumentException;
+	if (!theFormat) return NO;
 	EVALUATE_WITH_ARGUMENT_LIST(theFormat, aList, [self writeToWindowAtLocation:theLocation format:theFormat arguments:aList], BOOL);
 }
 
 - (BOOL)writeToWindow:(NSString *)theFormat arguments:(va_list)aList {
-	if (!theFormat) @throw NSInvalidArgumentException;
+	if (!theFormat) return NO;
 	int yCoordinate, xCoordinate;
 	getyx(_window, yCoordinate, xCoordinate);
 	return [self writeToWindowAtLocation:(NSPoint){xCoordinate, yCoordinate} format:theFormat arguments:aList];
 }
 
 - (BOOL)writeToWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat arguments:(va_list)aList {
-	if (!theFormat) @throw NSInvalidArgumentException;
+	if (!theFormat) return NO;
 	NSString *output = [[NSString alloc] initWithFormat:theFormat arguments:aList];
 	int result = mvwprintw(_window, theLocation.y, theLocation.x, [output UTF8String]);
-	[output release];
 	
 	return result == OK;
 }
 
-#pragma mark -
-#pragma mark Character Methods
+#pragma mark - Character Methods
 - (OCKey)getKey {
 	return wgetch(_window);
 }
@@ -336,27 +320,44 @@ static OCWindow *mainWindow = nil;
 	return mvwaddch(_window, theLocation.y, theLocation.x, theCharacter) == OK;
 }
 
-#pragma mark -
-#pragma mark Scanning Methods
+#pragma mark - Input Methods
+- (NSString *)getString {
+	NSMutableString *string = nil;
+	while (YES) {
+		NSInteger character = wgetch(_window);
+		if (character == ERR || character == '\n' || character == EOF) break;
+		if (!string) string = [NSMutableString string];
+		[string appendFormat:@"%c", character];
+	}
+	
+	return string;
+}
+
+- (NSString *)getStringFromLocation:(NSPoint)theLocation {
+	if (wmove(_window, theLocation.y, theLocation.x) == ERR) return nil;
+	return [self getString];
+}
+
+#pragma mark - Scanning Methods
 - (BOOL)scanFromWindow:(NSString *)theFormat, ... {
-	if (!theFormat) @throw NSInvalidArgumentException;
+	if (!theFormat) return NO;
 	EVALUATE_WITH_ARGUMENT_LIST(theFormat, aList, [self scanFromWindow:theFormat arguments:aList], BOOL);
 }
 
 - (BOOL)scanFromWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat, ... {
-	if (!theFormat) @throw NSInvalidArgumentException;
+	if (!theFormat) return NO;
 	EVALUATE_WITH_ARGUMENT_LIST(theFormat, aList, [self scanFromWindowAtLocation:theLocation format:theFormat arguments:aList], BOOL);
 }
 
 - (BOOL)scanFromWindow:(NSString *)theFormat arguments:(va_list)aList {
-	if (!theFormat) @throw NSInvalidArgumentException;
+	if (!theFormat) return NO;
 	int yCoordinate, xCoordinate;
 	getyx(_window, yCoordinate, xCoordinate);
 	return [self scanFromWindowAtLocation:(NSPoint){xCoordinate, yCoordinate} format:theFormat arguments:aList];
 }
 
 - (BOOL)scanFromWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat arguments:(va_list)aList {
-	if (!theFormat) @throw NSInvalidArgumentException;
+	if (!theFormat) return NO;
 	int result = wmove(_window, theLocation.y, theLocation.x);
 	if (result == OK) {
 		result = vwscanw(_window, (char *)[theFormat UTF8String], aList);

@@ -39,15 +39,15 @@
 
 #pragma mark - Initialization
 + (id)colorPairWithForegroundColor:(OCColor *)theForeground backgroundColor:(OCColor *)theBackground {
-	return [[[self alloc] initWithForegroundColor:theForeground backgroundColor:theBackground] autorelease];
+	return [[self alloc] initWithForegroundColor:theForeground backgroundColor:theBackground];
 }
 
 static OCAttributeIdentifier currentPairIdentifier = 1;
 - (id)initWithForegroundColor:(OCColor *)theForeground backgroundColor:(OCColor *)theBackground {
 	if (!theForeground || !theBackground) @throw NSInvalidArgumentException;
 	if ((self = [super initWithAttributeIdentifier:currentPairIdentifier])) {
-		_foregroundColor = [theForeground retain];
-		_backgroundColor = [theBackground retain];
+		_foregroundColor = theForeground;
+		_backgroundColor = theBackground;
 		init_pair(currentPairIdentifier++, _foregroundColor.colorIdentifier, _backgroundColor.colorIdentifier);
 	}
 	

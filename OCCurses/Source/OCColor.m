@@ -45,7 +45,7 @@
 
 #pragma mark - Initialization
 + (id)colorWithColorIdentifier:(OCColorIdentifier)theIdentifier {
-	return [[[self alloc] initWithColorIdentifier:theIdentifier] autorelease];
+	return [[self alloc] initWithColorIdentifier:theIdentifier];
 }
 
 - (id)initWithColorIdentifier:(OCColorIdentifier)theIdentifier {

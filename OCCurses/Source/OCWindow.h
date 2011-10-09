@@ -57,12 +57,11 @@
 	PANEL *_panel;
 }
 
-#pragma mark Properties
+#pragma mark - Properties
 @property (readonly) NSString *title;
 @property (readonly) NSRect frame;
-@property (readonly) OCBorder *border;
 
-#pragma mark Initializers
+#pragma mark - Initializers
 /*!
  Creates a new main window (representing stdscr) for the program to run with. This window is the
  root of the window hierarchy.
@@ -107,7 +106,7 @@
 - (id)initWithTitle:(NSString *)theTitle frame:(NSRect)theFrame parentWindow:(OCWindow *)theWindow;
 
 
-#pragma mark Subwindow Methods
+#pragma mark - Subwindow Methods
 /*!
  Returns an array of subwindows belonging to the current window.
  */
@@ -142,7 +141,7 @@
 - (void)removeSubwindow:(OCWindow *)theWindow;
 
 
-#pragma mark Window Property Methods
+#pragma mark - Window Property Methods
 /*!
  Returns the location of the cursor in the window.
  @returns the location of the cursor
@@ -170,7 +169,7 @@
 - (BOOL)setFrameOrigin:(NSPoint)thePoint;
 
 
-#pragma mark Keypad Methods
+#pragma mark - Keypad Methods
 /*!
  Returns whether a keypad is enabled for the window. Enabling a keypad for a window allows it
  to interpret unprintable keystrokes, such as function keys, arrow keys, the escape key, and so on.
@@ -186,7 +185,7 @@
 - (void)setKeypadEnabled:(BOOL)theFlag;
 
 
-#pragma mark Attribute Methods
+#pragma mark - Attribute Methods
 /*!
  Enables the given text attribute using wattron() and adds it to a list of enabled attributes.
  @param theAttribute the attribute to apply (precondition: theAttribute != nil)
@@ -227,7 +226,7 @@
 - (void)disableAllAttributes;
 
 
-#pragma mark Border Methods
+#pragma mark - Border Methods
 /*!
  Returns the currently applied border (nil if no border is set).
  @returns the window's border
@@ -241,7 +240,7 @@
 - (void)setBorder:(OCBorder *)theBorder;
 
 
-#pragma mark Printing Methods
+#pragma mark - Printing Methods
 /*!
  Clears the window.
  */
@@ -289,7 +288,7 @@
 - (BOOL)writeToWindowAtLocation:(NSPoint)theLocation format:(NSString *)theFormat arguments:(va_list)theList;
 
 
-#pragma mark Character Methods
+#pragma mark - Character Methods
 /*!
  Returns a single keystroke from the user (if keypad() is enabled, this keystroke can be an extended
  one).
@@ -320,8 +319,23 @@
  */
 - (BOOL)writeCharacter:(OCCharacter)theCharacter atLocation:(NSPoint)theLocation;
 
+#pragma mark - Input Methods
+/*!
+ Scans a string of characters from the window at the current cursor position. Returns nil if
+ the user types in no input.
+ @returns a string of characters the user has input
+ */
+- (NSString *)getString;
 
-#pragma mark Scanning Methods
+/*!
+ Scans a string of characters from the window at the given cursor position. Returns nil if
+ the user types in no input.
+ @param theLocation the location to scan characters from
+ @return a string of characters the user has input
+ */
+- (NSString *)getStringFromLocation:(NSPoint)theLocation;
+
+#pragma mark - Scanning Methods
 /*!
  Scans a format from the window at the current cursor position.
  @param theFormat the format to scan (precondition: theFormat != nil)

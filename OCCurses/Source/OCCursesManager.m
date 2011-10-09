@@ -59,11 +59,11 @@ static BOOL inCursesMode = YES;
 + (void)startColors {
 	if (has_colors()) {
 		start_color();
+		use_default_colors();
 	}
 }
 
 #pragma mark - Initialization
-#ifndef DEBUG
 __attribute__((constructor))
 void initialize () {
 	initscr();	
@@ -80,7 +80,6 @@ __attribute__((destructor))
 void deallocate () {
 	endwin();
 }
-#endif
 
 #pragma mark - Terminal Settings
 + (NSSize)terminalSize {

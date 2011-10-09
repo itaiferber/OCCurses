@@ -63,11 +63,11 @@ BOOL OCEqualBorderComponents (OCBorderComponents first, OCBorderComponents secon
 
 #pragma mark - Initialization
 + (id)borderWithComponentString:(NSString *)theString {
-	return [[[self alloc] initWithComponentString:theString] autorelease];
+	return [[self alloc] initWithComponentString:theString];
 }
 
 + (id)borderWithComponents:(OCBorderComponents)theComponents {
-	return [[[self alloc] initWithComponents:theComponents] autorelease];
+	return [[self alloc] initWithComponents:theComponents];
 }
 
 - (id)initWithComponentString:(NSString *)theString {

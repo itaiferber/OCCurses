@@ -38,7 +38,7 @@
 
 #pragma mark - Initialization
 + (id)attributeWithAttributeIdentifier:(OCAttributeIdentifier)theIdentifier {
-	return [[[self alloc] initWithAttributeIdentifier:theIdentifier] autorelease];
+	return [[self alloc] initWithAttributeIdentifier:theIdentifier];
 }
 
 - (id)initWithAttributeIdentifier:(OCAttributeIdentifier)theIdentifier {
